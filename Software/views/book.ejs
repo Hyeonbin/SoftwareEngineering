@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="utf-8">
+  <title>Max Moive World</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="css/half-slider.css" rel="stylesheet">
+  <link href="css/star.css" rel="stylesheet">
+  <link href="css/theme.css" rel="stylesheet">
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/angular.min.js"></script>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+         data-target="#nav-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Max Movie</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="nav-toggle">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/book">예매</a></li>
+          <li><a href="/movie">영화</a></li>
+          <li><a href="/theater">영화관</a></li>
+          <li><a href="/store">스토어</a></li>
+          <li><a href="/customer">고객센터</a></li>
+          <li><a href="/mypage">My page</a></li>
+          <% if(loginsignal2[0].login == 0){ %>
+          <li><a href="#" data-target="#login" data-toggle="modal">로그인</a></li>
+          <% } %>
+          <% if(loginsignal2[0].login == 1){ %>
+          <li><a href="#" data-target="#logout" data-toggle="modal">로그아웃</a></li>
+          <% } %>
+        </ul>
+        <form class="navbar-form navbar-right" role="search">
+          <input type="text" class="form-control" placeholder="Search">
+        </form>
+      </div>
+    </div>
+  </nav>
+  
+    <div class="modal fade" id="login" >
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <!-- header -->
+          <div class="modal-header">
+            <!-- 닫기(x) 버튼 -->
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <!-- header title -->
+            <h3 style="text-align:center;" class="modal-title">로그인</h3>
+            </div>
+            <!-- body -->
+            <div class="box">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="login-box well">
+                  <form action="/" accept-charset="UTF-8" role="form" method="post" action="">
+                  <input type="hidden" name="logout_signal" value="0"/>
+                      <div class="form-group">
+                          <label for="username-email">아이디</label>
+                          <input name="user_id" value='' id="username-email" placeholder="E-mail or Username" type="text" class="form-control" />
+                      </div>
+                      <div class="form-group">
+                          <label for="password">비밀번호</label>
+                          <input name="password" id="password" value='' placeholder="Password" type="password" class="form-control" />
+                      </div>
+                       
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-default btn-block m-t-md" value="Login">Login</button>
+                         
+                      </div>
+                      <span class='text-center'><a href="/bbs/index.php?mid=index&act=dispMemberFindAccount" class="text-sm"><%=loginsignal[0].id%></a></span>
+                      <hr />
+                      <div class="form-group">
+                          <a href="" class="btn btn-default btn-block m-t-md"> 회원가입</a>
+                      </div>
+                  </form>
+                    </div>
+                  </div>
+                </div>
+              </div>     
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="logout" >
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <!-- header -->
+          <div class="modal-header">
+            <!-- 닫기(x) 버튼 -->
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <!-- header title -->
+            <h4 style="text-align:center;" class="modal-title">로그아웃 하시겠습니까?</h4>
+            </div>
+            <!-- body -->
+            <div class="box">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="login-box well">
+                  <form action="/" accept-charset="UTF-8" role="form" method="post" action="">
+                          <button type="submit" class="btn btn-default btn-block m-t-md" value="Login">Yes</button>
+                          <input type="hidden" name="logout_signal" value="1"/>
+                          <input type="hidden" name="logout_id" value="<%=loginsignal[0].id%>"/>
+
+                  </form>
+
+                  <form action="/book" accept-charset="UTF-8" role="form" method="get" action="">
+                          <button type="submit" class="btn btn-default btn-block m-t-md" value="Logout">No</button>
+                          <input type="hidden" name="logout_signal" value="0"/>
+                  </form>
+                    </div>
+                  </div>
+                </div>
+              </div>     
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+  $(function(){
+    $("#btn1").click(function(){
+        $("#btn1_setting").removeClass("active");
+        $("#btn1_setting").addClass("active");
+        $("#btn2_setting").removeClass("active");
+        $("#btn3_setting").removeClass("active");
+        $("#btn4_setting").removeClass("active");
+    });
+  });
+  </script>
+
+  <script type="text/javascript">
+  $(function(){
+    $("#btn2").click(function(){
+        $("#btn2_setting").addClass("active");
+        $("#btn1_setting").removeClass("active");
+        $("#btn3_setting").removeClass("active");
+        $("#btn4_setting").removeClass("active");
+    });
+  });
+  </script>
+
+  <script type="text/javascript">
+  $(function(){
+    $("#btn3").click(function(){
+        $("#btn3_setting").addClass("active");
+        $("#btn1_setting").removeClass("active");
+        $("#btn2_setting").removeClass("active");
+        $("#btn4_setting").removeClass("active");
+    });
+  });
+  </script>
+
+  <script type="text/javascript">
+  $(function(){
+    $("#btn4").click(function(){
+        $("#btn4_setting").addClass("active");
+        $("#btn1_setting").removeClass("active");
+        $("#btn2_setting").removeClass("active");
+        $("#btn3_setting").removeClass("active");
+    });
+  });
+  </script>
+  <% var oneItem = rows; %> 
+  <br>
+  <br>
+  <br>
+  <div class="intro-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="intro-message">
+            <hr class="intro-divider">
+              <center>
+                <ul class="list-inline intro-social-buttons">
+                  <li id="btn1">
+                    <a style="padding-left:20px; padding-right:20px" id="btn1_setting" href="#movieselect" data-toggle="tab" aria-expanded="true" class="btn btn-default btn-lg active">영화 선택</a>
+                  </li>
+                  <img style="padding-left:45px; padding-right:45px" src="point.png" alt="">
+                  <li id="btn2">
+                    <a style="padding-left:20px; padding-right:20px" id="btn2_setting" href="#theaterselect" data-toggle="tab" aria-expanded="false" class="btn btn-default btn-lg">영화관 선택</a>
+                  </li>
+                  <img style="padding-left:45px; padding-right:45px" src="point.png" alt="">
+                  <li id="btn3">
+                    <a style="padding-left:20px; padding-right:20px" id="btn3_setting" href="#seat" data-toggle="tab" aria-expanded="false" class="btn btn-default btn-lg">좌석 선택</a>
+                  </li>
+                  <img style="padding-left:45px; padding-right:45px" src="point.png" alt="">
+                  <li id="btn4">
+                    <a style="padding-left:20px; padding-right:20px" id="btn4_setting" href="#payment" data-toggle="tab" aria-expanded="false" class="btn btn-default btn-lg">결제</a>
+                  </li>
+                </ul>
+              <br>
+
+              </center>
+              <hr class="intro-divider">
+                <div id="myTabContent" class="tab-content">
+                  <div class="tab-pane fade active in" id="movieselect">
+                    <div class="row text-center">
+                          <% for(var i=0; i < rows.length; i++){ %>
+                            <ul style="font-size:30px;" class="list-inline intro-social-buttons">
+                              <li id="btn1">
+                                <a style="padding-left:20px; padding-right:20px; background-color:#fafad2; border:0; outline:0; " id="btn1_setting" href="#movieselect" data-toggle="tab" aria-expanded="true" class="btn btn-default btn-lg active"><img src="<%= oneItem[i].grade%>">  <strong><%= oneItem[i].title%></strong></a>
+                              </li><br>
+                            </ul>
+                          <% } %>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade active in" id="theaterselect">
+                    <div class="row text-center">
+                          <% for(var i=0; i < rows.length; i++){ %>
+                            <ul style="font-size:30px;" class="list-inline intro-social-buttons">
+                              <li id="btn1">
+                                <a style="padding-left:20px; padding-right:20px; background-color:#fafad2; border:0; outline:0; " id="btn1_setting" href="#theaterselect" data-toggle="tab" aria-expanded="true" class="btn btn-default btn-lg active"><img src="<%= oneItem[i].grade%>">  <strong><%= oneItem[i].title%></strong></a>
+                              </li><br>
+                            </ul>
+                          <% } %>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade active in" id="seat">
+                    <div class="row text-center">
+                          <% for(var i=0; i < rows.length; i++){ %>
+                            <ul style="font-size:30px;" class="list-inline intro-social-buttons">
+                              <li id="btn1">
+                                <a style="padding-left:20px; padding-right:20px; background-color:#fafad2; border:0; outline:0; " id="btn1_setting" href="#seat" data-toggle="tab" aria-expanded="true" class="btn btn-default btn-lg active"><img src="<%= oneItem[i].grade%>">  <strong><%= oneItem[i].title%></strong></a>
+                              </li><br>
+                            </ul>
+                          <% } %>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade active in" id="payment">
+                    <div class="row text-center">
+                          <% for(var i=0; i < rows.length; i++){ %>
+                            <ul style="font-size:30px;" class="list-inline intro-social-buttons">
+                              <li id="btn1">
+                                <a style="padding-left:20px; padding-right:20px; background-color:#fafad2; border:0; outline:0; " id="btn1_setting" href="#payment" data-toggle="tab" aria-expanded="true" class="btn btn-default btn-lg active"><img src="<%= oneItem[i].grade%>">  <strong><%= oneItem[i].title%></strong></a>
+                              </li><br>
+                            </ul>
+                          <% } %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  <!-- Page Features -->
+
+</body>
+</html>

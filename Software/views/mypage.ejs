@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="utf-8">
+  <title>Max Moive World</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="css/half-slider.css" rel="stylesheet">
+  <link href="css/star.css" rel="stylesheet">
+
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/angular.min.js"></script>
+  
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+         data-target="#nav-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Max Movie</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="nav-toggle">
+        <ul class="nav navbar-nav">
+          <li><a href="/book">예매</a></li>
+          <li><a href="/movie">영화</a></li>
+          <li><a href="/theater">영화관</a></li>
+          <li><a href="/store">스토어</a></li>
+          <li><a href="/customer">고객센터</a></li>
+          <li class="active"><a href="/mypage">My page</a></li>
+          <% if(loginsignal2[0].login == 0){ %>
+          <li><a href="#" data-target="#login" data-toggle="modal">로그인</a></li>
+          <% } %>
+          <% if(loginsignal2[0].login == 1){ %>
+          <li><a href="#" data-target="#logout" data-toggle="modal">로그아웃</a></li>
+          <% } %>
+        </ul>
+        <form class="navbar-form navbar-right" role="search">
+          <input type="text" class="form-control" placeholder="Search">
+        </form>
+      </div>
+    </div>
+  </nav>
+
+    <div class="modal fade" id="login" >
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <!-- header -->
+          <div class="modal-header">
+            <!-- 닫기(x) 버튼 -->
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <!-- header title -->
+            <h3 style="text-align:center;" class="modal-title">로그인</h3>
+            </div>
+            <!-- body -->
+            <div class="box">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="login-box well">
+                  <form action="/" accept-charset="UTF-8" role="form" method="post" action="">
+                  <input type="hidden" name="logout_signal" value="0"/>
+                      <div class="form-group">
+                          <label for="username-email">아이디</label>
+                          <input name="user_id" value='' id="username-email" placeholder="E-mail or Username" type="text" class="form-control" />
+                      </div>
+                      <div class="form-group">
+                          <label for="password">비밀번호</label>
+                          <input name="password" id="password" value='' placeholder="Password" type="password" class="form-control" />
+                      </div>
+                       
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-default btn-block m-t-md" value="Login">Login</button>
+                         
+                      </div>
+                      
+                      <input id="check" type="hidden" value="<%=loginsignal.length%>" />
+
+                      <input id="cc" type="hidden" value="<%=loginsignal%>" />
+
+                      <span class='text-center'><a href="/bbs/index.php?mid=index&act=dispMemberFindAccount" class="text-sm"><%=loginsignal[0].id%></a></span>
+                      <hr />
+                      <div class="form-group">
+                          <a href="" class="btn btn-default btn-block m-t-md"> 회원가입</a>
+                      </div>
+                  </form>
+                    </div>
+                  </div>
+                </div>
+              </div>     
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="logout" >
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <!-- header -->
+          <div class="modal-header">
+            <!-- 닫기(x) 버튼 -->
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <!-- header title -->
+            <h4 style="text-align:center;" class="modal-title">로그아웃 하시겠습니까?</h4>
+            </div>
+            <!-- body -->
+            <div class="box">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="login-box well">
+                  <form action="/" accept-charset="UTF-8" role="form" method="post" action="">
+                          <button type="submit" class="btn btn-default btn-block m-t-md" value="Login">Yes</button>
+                          <input type="hidden" name="logout_signal" value="1"/>
+                          <input type="hidden" name="logout_id" value="<%=loginsignal[0].id%>"/>
+
+                  </form>
+
+                  <form action="/book" accept-charset="UTF-8" role="form" method="get" action="">
+                          <button type="submit" class="btn btn-default btn-block m-t-md" value="Logout">No</button>
+                          <input type="hidden" name="logout_signal" value="0"/>
+                  </form>
+                    </div>
+                  </div>
+                </div>
+              </div>     
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+  $(function(){
+    $("#myinform").click(function(){
+        $("#myinform").removeClass("active");
+        $("#myinform").addClass("active");
+        $("#revise").removeClass("active");
+        $("#passwd").removeClass("active");
+        $("#store").removeClass("active");
+        $("#inform").show();
+        $("#passwdchange").hide();
+        $("#reviseform").hide();
+        $("#storeform").hide();
+    });
+  });
+  </script>
+
+  <script type="text/javascript">
+  $(function(){
+    $("#store").click(function(){
+        $("#store").addClass("active");
+        $("#passwd").removeClass("active");
+        $("#myinform").removeClass("active");
+        $("#revise").removeClass("active");
+        $("#storeform").show();
+        $("#passwdchange").hide();
+        $("#inform").hide();
+        $("#reviseform").hide();
+    });
+  });
+  </script>
+
+  <script type="text/javascript">
+  $(function(){
+    $("#revise").click(function(){
+        $("#revise").addClass("active");
+        $("#store").removeClass("active");
+        $("#myinform").removeClass("active");
+        $("#passwd").removeClass("active");
+        $("#inform").hide();
+        $("#reviseform").show();
+        $("#passwdchange").hide();
+        $("#storeform").hide();
+    });
+  });
+  </script>
+
+  <script type="text/javascript">
+  $(function(){
+    $("#passwd").click(function(){
+        $("#revise").removeClass("active");
+        $("#myinform").removeClass("active");
+        $("#passwd").addClass("active");
+        $("#store").removeClass("active");
+        $("#inform").hide();
+        $("#reviseform").hide();
+        $("#passwdchange").show();
+        $("#storeform").hide();
+    });
+  });
+
+  </script>
+  <br>
+  <br>
+  <br>
+  <div style="width:100%;">
+    <div style="margin:40px;">
+      <h2>마이 페이지</h2>
+      <h4>My Page</h4>
+      <hr style="border:solid 3px black;"></hr>
+    </div>
+  </div>
+  <div style="margin:40px;">
+    <div style="float:left;">
+      <button id="myinform" href="#inform" class="btn btn-primary active" style="padding:20px">회원 정보</button>
+      <button id="passwd" href="#passwdchange" class="btn btn-primary" style="padding:20px">비밀번호 변경</button>
+      <button id="revise" href="#reviseform" class="btn btn-primary" style="padding:20px">정보 수정</button>
+      <button id="store" href="#storeform" class="btn btn-primary" style="padding:20px">구매 목록</button>
+    </div>
+  </div>
+  <div style="clear:left;"></div>
+
+  <div id="inform" class="container">
+    <br>
+    <table class="table table-bordered">
+      <thead>
+        <h2>회원 정보</h2>
+      </thead>
+      <br>
+      <tbody>
+        <tr>
+          <th>이름</th>
+          <td>서현빈</td>
+        </tr>
+        <tr>
+          <th>연락처</th>
+          <td>01067220655</td>
+        </tr>
+        <tr>
+          <th>이메일</th>
+          <td>shb1363@naver.com</td>
+        </tr>
+        <tr>
+          <th>생년월일</th>
+          <td>910603</td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button class="btn btn-danger" style="padding:10px; float:right">회원 탈퇴</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="clear:right;"></div>
+
+  <div style="display:none" id="passwdchange" class="container">
+    <br>
+    <table class="table table-bordered">
+      <thead>
+        <h2>비밀번호 변경</h2>
+      </thead>
+      <br>
+      <tbody>
+        <form method="post" enctype="multipart/form-data">
+          <tr>
+            <th>현재 비밀번호</th>
+            <td><input type="text" name="curpasswd" class="form-control"/></td>
+          </tr>
+          <tr>
+            <th>새로운 비밀번호</th>
+            <td><input type="text" name="newpasswd" class="form-control"/></td>
+          </tr>
+          <tr>
+            <th>새로운 비밀번호 재입력</th>
+            <td><input type="text" name="newpasswdagain" class="form-control"/></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <button class="btn btn-primary" style="padding:10px; float:right">비밀번호 변경</button>
+            </td>
+          </tr>
+        </form>
+      </tbody>
+    </table>
+  </div>
+  <div style="clear:right;"></div>
+
+  <div style="display:none" id="reviseform" class="container">
+    <br>
+    <table class="table table-bordered">
+      <thead>
+        <h2>정보 수정</h2>
+      </thead>
+      <br>
+      <tbody>
+        <form method="post" enctype="multipart/form-data">
+          <tr>
+            <th>이름</th>
+            <td><input type="text" placeholder="서현빈" name="name" class="form-control"/></td>
+          </tr>
+          <tr>
+            <th>연락처</th>
+            <td><input type="text" placeholder="01067220655" name="phonenum" class="form-control"/></td>
+          </tr>
+          <tr>
+            <th>이메일</th>
+            <td><input type="text" placeholder="shb1363@naver.com" name="email" class="form-control"/></td>
+          </tr>
+          <tr>
+            <th>생년월일</th>
+            <td><input type="text" placeholder="910603" name="content" class="form-control"/></textarea></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <button class="btn btn-primary" style="padding:10px; float:right">정보 수정</button>
+            </td>
+          </tr>
+        </form>
+      </tbody>
+    </table>
+  </div>
+  <div style="clear:right;"></div>
+
+  <div class="container" id="storeform" style="margin: 0 auto; display:none">
+    <br>
+    <table class="table table-striped">
+      <thead>
+        <h2>구매 목록</h2>
+        <br>
+        <tr>
+          <th>날짜</th>
+          <th>상품</th>
+          <th>수량</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2017.05.22</td>
+          <td>나쵸콤보</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>2017.05.23</td>
+          <td>맥스콤보</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>2017.05.24</td>
+          <td>오징어콤보</td>
+          <td>1</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- Page Features -->
+
+</body>
+</html>

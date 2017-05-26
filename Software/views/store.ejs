@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="utf-8">
+  <title>Max Moive World</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="css/half-slider.css" rel="stylesheet">
+  <link href="css/star.css" rel="stylesheet">
+
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/angular.min.js"></script>
+  
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+         data-target="#nav-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Max Movie</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="nav-toggle">
+        <ul class="nav navbar-nav">
+          <li><a href="/book">예매</a></li>
+          <li><a href="/movie">영화</a></li>
+          <li><a href="/theater">영화관</a></li>
+          <li class="active"><a href="/store">스토어</a></li>
+          <li><a href="/customer">고객센터</a></li>
+          <li><a href="/mypage">My page</a></li>
+          <% if(loginsignal2[0].login == 0){ %>
+          <li><a href="#" data-target="#login" data-toggle="modal">로그인</a></li>
+          <% } %>
+          <% if(loginsignal2[0].login == 1){ %>
+          <li><a href="#" data-target="#logout" data-toggle="modal">로그아웃</a></li>
+          <% } %>
+        </ul>
+        <form class="navbar-form navbar-right" role="search">
+          <input type="text" class="form-control" placeholder="Search">
+        </form>
+      </div>
+    </div>
+  </nav>
+
+    <div class="modal fade" id="login" >
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <!-- header -->
+          <div class="modal-header">
+            <!-- 닫기(x) 버튼 -->
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <!-- header title -->
+            <h3 style="text-align:center;" class="modal-title">로그인</h3>
+            </div>
+            <!-- body -->
+            <div class="box">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="login-box well">
+                  <form action="/" accept-charset="UTF-8" role="form" method="post" action="">
+                  <input type="hidden" name="logout_signal" value="0"/>
+                      <div class="form-group">
+                          <label for="username-email">아이디</label>
+                          <input name="user_id" value='' id="username-email" placeholder="E-mail or Username" type="text" class="form-control" />
+                      </div>
+                      <div class="form-group">
+                          <label for="password">비밀번호</label>
+                          <input name="password" id="password" value='' placeholder="Password" type="password" class="form-control" />
+                      </div>
+                       
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-default btn-block m-t-md" value="Login">Login</button>
+                         
+                      </div>
+                      
+                      <input id="check" type="hidden" value="<%=loginsignal.length%>" />
+
+                      <input id="cc" type="hidden" value="<%=loginsignal%>" />
+
+                      <span class='text-center'><a href="/bbs/index.php?mid=index&act=dispMemberFindAccount" class="text-sm"><%=loginsignal[0].id%></a></span>
+                      <hr />
+                      <div class="form-group">
+                          <a href="" class="btn btn-default btn-block m-t-md"> 회원가입</a>
+                      </div>
+                  </form>
+                    </div>
+                  </div>
+                </div>
+              </div>     
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="logout" >
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <!-- header -->
+          <div class="modal-header">
+            <!-- 닫기(x) 버튼 -->
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <!-- header title -->
+            <h4 style="text-align:center;" class="modal-title">로그아웃 하시겠습니까?</h4>
+            </div>
+            <!-- body -->
+            <div class="box">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="login-box well">
+                  <form action="/" accept-charset="UTF-8" role="form" method="post" action="">
+                          <button type="submit" class="btn btn-default btn-block m-t-md" value="Login">Yes</button>
+                          <input type="hidden" name="logout_signal" value="1"/>
+                          <input type="hidden" name="logout_id" value="<%=loginsignal[0].id%>"/>
+                  </form>
+
+                  <form action="/" accept-charset="UTF-8" role="form" method="get" action="">
+                          <button type="submit" class="btn btn-default btn-block m-t-md" value="Logout">No</button>
+                          <input type="hidden" name="logout_signal" value="0"/>
+                  </form>
+                    </div>
+                  </div>
+                </div>
+              </div>     
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header id="myCarousel" class="carousel">
+    <div class="carousel-inner">
+      <div class="item active">
+        <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide One');">
+        </div>
+        <div class="carousel-caption" style="text-align:left">
+          <h2>스토어</h2>
+          <h4>Store</h4>
+        </div>
+      </div>
+  </header>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#minus").click(function(){
+        if($("#layerpop_num").val() > 1){
+          $("#layerpop_num").val(+$("#layerpop_num").val() - 1);
+          var val = 11000 * $("#layerpop_num").val();
+          $("#layerpop_val").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#plus").click(function(){
+        if($("#layerpop_num").val() < 8) {
+          $("#layerpop_num").val(+$("#layerpop_num").val() + 1);
+          var val = 11000 * $("#layerpop_num").val();
+          $("#layerpop_val").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#layerpop_cancel").click(function(){
+        $("#layerpop_num").val(1);
+        $("#layerpop_val").text("11000");
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#minus1").click(function(){
+        if($("#layerpop_num1").val() > 1){
+          $("#layerpop_num1").val(+$("#layerpop_num1").val() - 1);
+          var val = 11000 * $("#layerpop_num1").val();
+          $("#layerpop_val1").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#plus1").click(function(){
+        if($("#layerpop_num1").val() < 8) {
+          $("#layerpop_num1").val(+$("#layerpop_num1").val() + 1);
+          var val = 11000 * $("#layerpop_num1").val();
+          $("#layerpop_val1").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#layerpop_cancel1").click(function(){
+        $("#layerpop_num1").val(1);
+        $("#layerpop_val1").text("11000");
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#minus2").click(function(){
+        if($("#layerpop_num2").val() > 1){
+          $("#layerpop_num2").val(+$("#layerpop_num2").val() - 1);
+          var val = 11000 * $("#layerpop_num2").val();
+          $("#layerpop_val2").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#plus2").click(function(){
+        if($("#layerpop_num2").val() < 8) {
+          $("#layerpop_num2").val(+$("#layerpop_num2").val() + 1);
+          var val = 11000 * $("#layerpop_num2").val();
+          $("#layerpop_val2").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#layerpop_cancel2").click(function(){
+        $("#layerpop_num2").val(1);
+        $("#layerpop_val2").text("11000");
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#minus3").click(function(){
+        if($("#layerpop_num3").val() > 1){
+          $("#layerpop_num3").val(+$("#layerpop_num3").val() - 1);
+          var val = 11000 * $("#layerpop_num3").val();
+          $("#layerpop_val3").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#plus3").click(function(){
+        if($("#layerpop_num3").val() < 8) {
+          $("#layerpop_num3").val(+$("#layerpop_num3").val() + 1);
+          var val = 11000 * $("#layerpop_num3").val();
+          $("#layerpop_val3").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#layerpop_cancel3").click(function(){
+        $("#layerpop_num3").val(1);
+        $("#layerpop_val3").text("11000");
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#minus4").click(function(){
+        if($("#layerpop_num4").val() > 1){
+          $("#layerpop_num4").val(+$("#layerpop_num4").val() - 1);
+          var val = 11000 * $("#layerpop_num").val();
+          $("#layerpop_val4").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#plus4").click(function(){
+        if($("#layerpop_num4").val() < 8) {
+          $("#layerpop_num4").val(+$("#layerpop_num4").val() + 1);
+          var val = 11000 * $("#layerpop_num4").val();
+          $("#layerpop_val4").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#layerpop_cancel4").click(function(){
+        $("#layerpop_num4").val(1);
+        $("#layerpop_val4").text("11000");
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#minus5").click(function(){
+        if($("#layerpop_num5").val() > 1){
+          $("#layerpop_num5").val(+$("#layerpop_num5").val() - 1);
+          var val = 11000 * $("#layerpop_num5").val();
+          $("#layerpop_val5").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#plus5").click(function(){
+        if($("#layerpop_num5").val() < 8) {
+          $("#layerpop_num5").val(+$("#layerpop_num5").val() + 1);
+          var val = 11000 * $("#layerpop_num5").val();
+          $("#layerpop_val5").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#layerpop_cancel5").click(function(){
+        $("#layerpop_num5").val(1);
+        $("#layerpop_val5").text("11000");
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#minus6").click(function(){
+        if($("#layerpop_num6").val() > 1){
+          $("#layerpop_num6").val(+$("#layerpop_num6").val() - 1);
+          var val = 11000 * $("#layerpop_num6").val();
+          $("#layerpop_val6").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#plus6").click(function(){
+        if($("#layerpop_num6").val() < 8) {
+          $("#layerpop_num6").val(+$("#layerpop_num6").val() + 1);
+          var val = 11000 * $("#layerpop_num6").val();
+          $("#layerpop_val6").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#layerpop_cancel6").click(function(){
+        $("#layerpop_num6").val(1);
+        $("#layerpop_val6").text("11000");
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#minus7").click(function(){
+        if($("#layerpop_num7").val() > 1){
+          $("#layerpop_num7").val(+$("#layerpop_num7").val() - 1);
+          var val = 11000 * $("#layerpop_num7").val();
+          $("#layerpop_val7").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#plus7").click(function(){
+        if($("#layerpop_num7").val() < 8) {
+          $("#layerpop_num7").val(+$("#layerpop_num7").val() + 1);
+          var val = 11000 * $("#layerpop_num7").val();
+          $("#layerpop_val7").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#layerpop_cancel7").click(function(){
+        $("#layerpop_num7").val(1);
+        $("#layerpop_val7").text("11000");
+      });
+    });
+  </script>
+
+  <div class="intro-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="intro-message">
+            <br>
+              <center>
+                <br>
+                  <div id="myTabContent" class="tab-content">
+                    <div class="row text-center">
+                      <div class="col-md-3 col-sm-6 hero-feature">
+                          <div class="thumbnail">
+                              <img src="http://placehold.it/800x500" alt="">
+                              <div class="caption">
+                                  <h3>팝콘</h3>
+                                  <h4>11000원</h4>
+                                  <p>
+                                    <button class="btn btn-default" data-target="#layerpop" data-toggle="modal">구매하기</button><br/>
+                                    <div class="modal fade" id="layerpop" >
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          <!-- header -->
+                                          <div class="modal-header">
+                                            <!-- header title -->
+                                            <h3 class="modal-title">상품구매</h3>
+                                          </div>
+                                          <!-- body -->
+                                          <div class="box">
+                                            <div class="col-lg-12">
+                                              <div style="width:30%; float:left;">
+                                                <img class="img-responsive img-border img-left" src="img/king_small.jpg" alt="">
+                                              </div>
+                                              <div style="width:65%; float:right">
+                                                <h2 class="intro-text text-left">팝콘</h2>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">사용가능 영화관 : 전체영화관</h4>
+                                                <h4 class="intro-text text-left">유효기간 : 유효기간은 구매일로부터 2년입니다.(일자기준)</h4>
+                                                <h4 class="intro-text text-left">판매수량 : 1회 8개 구매가능</h4>
+                                                <h4 class="intro-text text-left">구매 후 취소: 구매 일로 일주일 이내에만 취소가 가능합니다.</h4>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">스토어 판매가 : 11000 원</h4>
+                                                <div style="margin: 0 auto;">
+                                                  <div style="float:left;">
+                                                    <h4 class="intro-text text-left">수량 </h4>
+                                                  </div>
+
+                                                  <div style="float:left;">
+                                                    <div style="width:140px;">
+                                                      <div class="input-group" style="margin-left:20px;">
+                                                         <span class="input-group-btn">
+                                                             <button id="minus" type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-minus"></span>
+                                                             </button>
+                                                         </span>
+                                                         <input id="layerpop_num" type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="8">
+                                                         <span class="input-group-btn">
+                                                             <button id="plus" type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-plus"></span>
+                                                             </button>
+                                                         </span>
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                               </div>
+                                               <div style="clear:left;"></div>
+                                               <hr></hr>
+                                               <div style="margin: 0 auto;">
+                                                 <div style="float:left;">
+                                                   <h4 class="intro-text text-left">총 판매가 : </h4>
+                                                 </div>
+
+                                                 <div style="float:left;">
+                                                    <h4 style="margin-left:10px;">
+                                                      <span id=layerpop_val>11000</span>
+                                                    </h4>
+                                                </div>
+
+                                                <div style="float:left;">
+                                                 <h4 style="margin-left:10px;" class="intro-text text-left">원</h4>
+                                               </div>
+                                              </div>
+                                              <div style="clear:left;"></div>
+                                              <hr class="visible-xs">
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <!-- Footer -->
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">구매</button>
+                                            <button id="layerpop_cancel" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 hero-feature">
+                          <div class="thumbnail">
+                              <img src="http://placehold.it/800x500" alt="">
+                              <div class="caption">
+                                  <h3>팝콘</h3>
+                                  <h4>11000원</h4>
+                                  <p>
+                                    <button class="btn btn-default" data-target="#layerpop1" data-toggle="modal">구매하기</button><br/>
+                                    <div class="modal fade" id="layerpop1" >
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          <!-- header -->
+                                          <div class="modal-header">
+                                            <!-- header title -->
+                                            <h3 class="modal-title">상품구매</h3>
+                                          </div>
+                                          <!-- body -->
+                                          <div class="box">
+                                            <div class="col-lg-12">
+                                              <div style="width:30%; float:left;">
+                                                <img class="img-responsive img-border img-left" src="img/king_small.jpg" alt="">
+                                              </div>
+                                              <div style="width:65%; float:right">
+                                                <h2 class="intro-text text-left">팝콘</h2>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">사용가능 영화관 : 전체영화관</h4>
+                                                <h4 class="intro-text text-left">유효기간 : 유효기간은 구매일로부터 2년입니다.(일자기준)</h4>
+                                                <h4 class="intro-text text-left">판매수량 : 1회 8개 구매가능</h4>
+                                                <h4 class="intro-text text-left">구매 후 취소: 구매 일로 일주일 이내에만 취소가 가능합니다.</h4>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">스토어 판매가 : 11000 원</h4>
+                                                <div style="margin: 0 auto;">
+                                                  <div style="float:left;">
+                                                    <h4 class="intro-text text-left">수량 </h4>
+                                                  </div>
+
+                                                  <div style="float:left;">
+                                                    <div style="width:140px;">
+                                                      <div class="input-group" style="margin-left:20px;">
+                                                         <span class="input-group-btn">
+                                                             <button id="minus1" type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-minus"></span>
+                                                             </button>
+                                                         </span>
+                                                         <input id="layerpop_num1" type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="8">
+                                                         <span class="input-group-btn">
+                                                             <button id="plus1" type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-plus"></span>
+                                                             </button>
+                                                         </span>
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                               </div>
+                                               <div style="clear:left;"></div>
+                                               <hr></hr>
+                                               <div style="margin: 0 auto;">
+                                                 <div style="float:left;">
+                                                   <h4 class="intro-text text-left">총 판매가 : </h4>
+                                                 </div>
+
+                                                 <div style="float:left;">
+                                                    <h4 style="margin-left:10px;">
+                                                      <span id=layerpop_val1>11000</span>
+                                                    </h4>
+                                                </div>
+
+                                                <div style="float:left;">
+                                                 <h4 style="margin-left:10px;" class="intro-text text-left">원</h4>
+                                               </div>
+                                              </div>
+                                              <div style="clear:left;"></div>
+                                              <hr class="visible-xs">
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <!-- Footer -->
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">구매</button>
+                                            <button id="layerpop_cancel1" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 hero-feature">
+                          <div class="thumbnail">
+                              <img src="http://placehold.it/800x500" alt="">
+                              <div class="caption">
+                                  <h3>팝콘</h3>
+                                  <h4>11000원</h4>
+                                  <p>
+                                    <button class="btn btn-default" data-target="#layerpop2" data-toggle="modal">구매하기</button><br/>
+                                    <div class="modal fade" id="layerpop2" >
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          <!-- header -->
+                                          <div class="modal-header">
+                                            <!-- header title -->
+                                            <h3 class="modal-title">상품구매</h3>
+                                          </div>
+                                          <!-- body -->
+                                          <div class="box">
+                                            <div class="col-lg-12">
+                                              <div style="width:30%; float:left;">
+                                                <img class="img-responsive img-border img-left" src="img/king_small.jpg" alt="">
+                                              </div>
+                                              <div style="width:65%; float:right">
+                                                <h2 class="intro-text text-left">팝콘</h2>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">사용가능 영화관 : 전체영화관</h4>
+                                                <h4 class="intro-text text-left">유효기간 : 유효기간은 구매일로부터 2년입니다.(일자기준)</h4>
+                                                <h4 class="intro-text text-left">판매수량 : 1회 8개 구매가능</h4>
+                                                <h4 class="intro-text text-left">구매 후 취소: 구매 일로 일주일 이내에만 취소가 가능합니다.</h4>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">스토어 판매가 : 11000 원</h4>
+                                                <div style="margin: 0 auto;">
+                                                  <div style="float:left;">
+                                                    <h4 class="intro-text text-left">수량 </h4>
+                                                  </div>
+
+                                                  <div style="float:left;">
+                                                    <div style="width:140px;">
+                                                      <div class="input-group" style="margin-left:20px;">
+                                                         <span class="input-group-btn">
+                                                             <button id="minus2" type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-minus"></span>
+                                                             </button>
+                                                         </span>
+                                                         <input id="layerpop_num2" type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="8">
+                                                         <span class="input-group-btn">
+                                                             <button id="plus2" type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-plus"></span>
+                                                             </button>
+                                                         </span>
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                               </div>
+                                               <div style="clear:left;"></div>
+                                               <hr></hr>
+                                               <div style="margin: 0 auto;">
+                                                 <div style="float:left;">
+                                                   <h4 class="intro-text text-left">총 판매가 : </h4>
+                                                 </div>
+
+                                                 <div style="float:left;">
+                                                    <h4 style="margin-left:10px;">
+                                                      <span id=layerpop_val2>11000</span>
+                                                    </h4>
+                                                </div>
+
+                                                <div style="float:left;">
+                                                 <h4 style="margin-left:10px;" class="intro-text text-left">원</h4>
+                                               </div>
+                                              </div>
+                                              <div style="clear:left;"></div>
+                                              <hr class="visible-xs">
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <!-- Footer -->
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">구매</button>
+                                            <button id="layerpop_cancel2" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 hero-feature">
+                          <div class="thumbnail">
+                              <img src="http://placehold.it/800x500" alt="">
+                              <div class="caption">
+                                  <h3>팝콘</h3>
+                                  <h4>11000원</h4>
+                                  <p>
+                                    <button class="btn btn-default" data-target="#layerpop3" data-toggle="modal">구매하기</button><br/>
+                                    <div class="modal fade" id="layerpop3" >
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          <!-- header -->
+                                          <div class="modal-header">
+                                            <!-- header title -->
+                                            <h3 class="modal-title">상품구매</h3>
+                                          </div>
+                                          <!-- body -->
+                                          <div class="box">
+                                            <div class="col-lg-12">
+                                              <div style="width:30%; float:left;">
+                                                <img class="img-responsive img-border img-left" src="img/king_small.jpg" alt="">
+                                              </div>
+                                              <div style="width:65%; float:right">
+                                                <h2 class="intro-text text-left">팝콘</h2>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">사용가능 영화관 : 전체영화관</h4>
+                                                <h4 class="intro-text text-left">유효기간 : 유효기간은 구매일로부터 2년입니다.(일자기준)</h4>
+                                                <h4 class="intro-text text-left">판매수량 : 1회 8개 구매가능</h4>
+                                                <h4 class="intro-text text-left">구매 후 취소: 구매 일로 일주일 이내에만 취소가 가능합니다.</h4>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">스토어 판매가 : 11000 원</h4>
+                                                <div style="margin: 0 auto;">
+                                                  <div style="float:left;">
+                                                    <h4 class="intro-text text-left">수량 </h4>
+                                                  </div>
+
+                                                  <div style="float:left;">
+                                                    <div style="width:140px;">
+                                                      <div class="input-group" style="margin-left:20px;">
+                                                         <span class="input-group-btn">
+                                                             <button id="minus3" type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-minus"></span>
+                                                             </button>
+                                                         </span>
+                                                         <input id="layerpop_num3" type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="8">
+                                                         <span class="input-group-btn">
+                                                             <button id="plus3" type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-plus"></span>
+                                                             </button>
+                                                         </span>
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                               </div>
+                                               <div style="clear:left;"></div>
+                                               <hr></hr>
+                                               <div style="margin: 0 auto;">
+                                                 <div style="float:left;">
+                                                   <h4 class="intro-text text-left">총 판매가 : </h4>
+                                                 </div>
+
+                                                 <div style="float:left;">
+                                                    <h4 style="margin-left:10px;">
+                                                      <span id=layerpop_val3>11000</span>
+                                                    </h4>
+                                                </div>
+
+                                                <div style="float:left;">
+                                                 <h4 style="margin-left:10px;" class="intro-text text-left">원</h4>
+                                               </div>
+                                              </div>
+                                              <div style="clear:left;"></div>
+                                              <hr class="visible-xs">
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <!-- Footer -->
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">구매</button>
+                                            <button id="layerpop_cancel3" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                </br>
+              </center>
+            </br>
+            <br>
+              <center>
+                  <div id="myTabContent" class="tab-content">
+                    <div class="row text-center">
+                      <div class="col-md-3 col-sm-6 hero-feature">
+                          <div class="thumbnail">
+                              <img src="http://placehold.it/800x500" alt="">
+                              <div class="caption">
+                                  <h3>팝콘</h3>
+                                  <h4>11000원</h4>
+                                  <p>
+                                    <button class="btn btn-default" data-target="#layerpop4" data-toggle="modal">구매하기</button><br/>
+                                    <div class="modal fade" id="layerpop4" >
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          <!-- header -->
+                                          <div class="modal-header">
+                                            <!-- header title -->
+                                            <h3 class="modal-title">상품구매</h3>
+                                          </div>
+                                          <!-- body -->
+                                          <div class="box">
+                                            <div class="col-lg-12">
+                                              <div style="width:30%; float:left;">
+                                                <img class="img-responsive img-border img-left" src="img/king_small.jpg" alt="">
+                                              </div>
+                                              <div style="width:65%; float:right">
+                                                <h2 class="intro-text text-left">팝콘</h2>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">사용가능 영화관 : 전체영화관</h4>
+                                                <h4 class="intro-text text-left">유효기간 : 유효기간은 구매일로부터 2년입니다.(일자기준)</h4>
+                                                <h4 class="intro-text text-left">판매수량 : 1회 8개 구매가능</h4>
+                                                <h4 class="intro-text text-left">구매 후 취소: 구매 일로 일주일 이내에만 취소가 가능합니다.</h4>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">스토어 판매가 : 11000 원</h4>
+                                                <div style="margin: 0 auto;">
+                                                  <div style="float:left;">
+                                                    <h4 class="intro-text text-left">수량 </h4>
+                                                  </div>
+
+                                                  <div style="float:left;">
+                                                    <div style="width:140px;">
+                                                      <div class="input-group" style="margin-left:20px;">
+                                                         <span class="input-group-btn">
+                                                             <button id="minus4" type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-minus"></span>
+                                                             </button>
+                                                         </span>
+                                                         <input id="layerpop_num4" type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="8">
+                                                         <span class="input-group-btn">
+                                                             <button id="plus4" type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-plus"></span>
+                                                             </button>
+                                                         </span>
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                               </div>
+                                               <div style="clear:left;"></div>
+                                               <hr></hr>
+                                               <div style="margin: 0 auto;">
+                                                 <div style="float:left;">
+                                                   <h4 class="intro-text text-left">총 판매가 : </h4>
+                                                 </div>
+
+                                                 <div style="float:left;">
+                                                    <h4 style="margin-left:10px;">
+                                                      <span id=layerpop_val4>11000</span>
+                                                    </h4>
+                                                </div>
+
+                                                <div style="float:left;">
+                                                 <h4 style="margin-left:10px;" class="intro-text text-left">원</h4>
+                                               </div>
+                                              </div>
+                                              <div style="clear:left;"></div>
+                                              <hr class="visible-xs">
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <!-- Footer -->
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">구매</button>
+                                            <button id="layerpop_cancel4" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 hero-feature">
+                          <div class="thumbnail">
+                              <img src="http://placehold.it/800x500" alt="">
+                              <div class="caption">
+                                  <h3>팝콘</h3>
+                                  <h4>11000원</h4>
+                                  <p>
+                                    <button class="btn btn-default" data-target="#layerpop5" data-toggle="modal">구매하기</button><br/>
+                                    <div class="modal fade" id="layerpop5" >
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          <!-- header -->
+                                          <div class="modal-header">
+                                            <!-- header title -->
+                                            <h3 class="modal-title">상품구매</h3>
+                                          </div>
+                                          <!-- body -->
+                                          <div class="box">
+                                            <div class="col-lg-12">
+                                              <div style="width:30%; float:left;">
+                                                <img class="img-responsive img-border img-left" src="img/king_small.jpg" alt="">
+                                              </div>
+                                              <div style="width:65%; float:right">
+                                                <h2 class="intro-text text-left">팝콘</h2>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">사용가능 영화관 : 전체영화관</h4>
+                                                <h4 class="intro-text text-left">유효기간 : 유효기간은 구매일로부터 2년입니다.(일자기준)</h4>
+                                                <h4 class="intro-text text-left">판매수량 : 1회 8개 구매가능</h4>
+                                                <h4 class="intro-text text-left">구매 후 취소: 구매 일로 일주일 이내에만 취소가 가능합니다.</h4>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">스토어 판매가 : 11000 원</h4>
+                                                <div style="margin: 0 auto;">
+                                                  <div style="float:left;">
+                                                    <h4 class="intro-text text-left">수량 </h4>
+                                                  </div>
+
+                                                  <div style="float:left;">
+                                                    <div style="width:140px;">
+                                                      <div class="input-group" style="margin-left:20px;">
+                                                         <span class="input-group-btn">
+                                                             <button id="minus5" type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-minus"></span>
+                                                             </button>
+                                                         </span>
+                                                         <input id="layerpop_num5" type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="8">
+                                                         <span class="input-group-btn">
+                                                             <button id="plus5" type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-plus"></span>
+                                                             </button>
+                                                         </span>
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                               </div>
+                                               <div style="clear:left;"></div>
+                                               <hr></hr>
+                                               <div style="margin: 0 auto;">
+                                                 <div style="float:left;">
+                                                   <h4 class="intro-text text-left">총 판매가 : </h4>
+                                                 </div>
+
+                                                 <div style="float:left;">
+                                                    <h4 style="margin-left:10px;">
+                                                      <span id=layerpop_val5>11000</span>
+                                                    </h4>
+                                                </div>
+
+                                                <div style="float:left;">
+                                                 <h4 style="margin-left:10px;" class="intro-text text-left">원</h4>
+                                               </div>
+                                              </div>
+                                              <div style="clear:left;"></div>
+                                              <hr class="visible-xs">
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <!-- Footer -->
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">구매</button>
+                                            <button id="layerpop_cancel5" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 hero-feature">
+                          <div class="thumbnail">
+                              <img src="http://placehold.it/800x500" alt="">
+                              <div class="caption">
+                                  <h3>팝콘</h3>
+                                  <h4>11000원</h4>
+                                  <p>
+                                    <button class="btn btn-default" data-target="#layerpop6" data-toggle="modal">구매하기</button><br/>
+                                    <div class="modal fade" id="layerpop6" >
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          <!-- header -->
+                                          <div class="modal-header">
+                                            <!-- header title -->
+                                            <h3 class="modal-title">상품구매</h3>
+                                          </div>
+                                          <!-- body -->
+                                          <div class="box">
+                                            <div class="col-lg-12">
+                                              <div style="width:30%; float:left;">
+                                                <img class="img-responsive img-border img-left" src="img/king_small.jpg" alt="">
+                                              </div>
+                                              <div style="width:65%; float:right">
+                                                <h2 class="intro-text text-left">팝콘</h2>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">사용가능 영화관 : 전체영화관</h4>
+                                                <h4 class="intro-text text-left">유효기간 : 유효기간은 구매일로부터 2년입니다.(일자기준)</h4>
+                                                <h4 class="intro-text text-left">판매수량 : 1회 8개 구매가능</h4>
+                                                <h4 class="intro-text text-left">구매 후 취소: 구매 일로 일주일 이내에만 취소가 가능합니다.</h4>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">스토어 판매가 : 11000 원</h4>
+                                                <div style="margin: 0 auto;">
+                                                  <div style="float:left;">
+                                                    <h4 class="intro-text text-left">수량 </h4>
+                                                  </div>
+
+                                                  <div style="float:left;">
+                                                    <div style="width:140px;">
+                                                      <div class="input-group" style="margin-left:20px;">
+                                                         <span class="input-group-btn">
+                                                             <button id="minus6" type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-minus"></span>
+                                                             </button>
+                                                         </span>
+                                                         <input id="layerpop_num6" type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="8">
+                                                         <span class="input-group-btn">
+                                                             <button id="plus6" type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-plus"></span>
+                                                             </button>
+                                                         </span>
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                               </div>
+                                               <div style="clear:left;"></div>
+                                               <hr></hr>
+                                               <div style="margin: 0 auto;">
+                                                 <div style="float:left;">
+                                                   <h4 class="intro-text text-left">총 판매가 : </h4>
+                                                 </div>
+
+                                                 <div style="float:left;">
+                                                    <h4 style="margin-left:10px;">
+                                                      <span id=layerpop_val6>11000</span>
+                                                    </h4>
+                                                </div>
+
+                                                <div style="float:left;">
+                                                 <h4 style="margin-left:10px;" class="intro-text text-left">원</h4>
+                                               </div>
+                                              </div>
+                                              <div style="clear:left;"></div>
+                                              <hr class="visible-xs">
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <!-- Footer -->
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">구매</button>
+                                            <button id="layerpop_cancel6" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 hero-feature">
+                          <div class="thumbnail">
+                              <img src="http://placehold.it/800x500" alt="">
+                              <div class="caption">
+                                  <h3>팝콘</h3>
+                                  <h4>11000원</h4>
+                                  <p>
+                                    <button class="btn btn-default" data-target="#layerpop7" data-toggle="modal">구매하기</button><br/>
+                                    <div class="modal fade" id="layerpop7" >
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          <!-- header -->
+                                          <div class="modal-header">
+                                            <!-- header title -->
+                                            <h3 class="modal-title">상품구매</h3>
+                                          </div>
+                                          <!-- body -->
+                                          <div class="box">
+                                            <div class="col-lg-12">
+                                              <div style="width:30%; float:left;">
+                                                <img class="img-responsive img-border img-left" src="img/king_small.jpg" alt="">
+                                              </div>
+                                              <div style="width:65%; float:right">
+                                                <h2 class="intro-text text-left">팝콘</h2>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">사용가능 영화관 : 전체영화관</h4>
+                                                <h4 class="intro-text text-left">유효기간 : 유효기간은 구매일로부터 2년입니다.(일자기준)</h4>
+                                                <h4 class="intro-text text-left">판매수량 : 1회 8개 구매가능</h4>
+                                                <h4 class="intro-text text-left">구매 후 취소: 구매 일로 일주일 이내에만 취소가 가능합니다.</h4>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">스토어 판매가 : 11000 원</h4>
+                                                <div style="margin: 0 auto;">
+                                                  <div style="float:left;">
+                                                    <h4 class="intro-text text-left">수량 </h4>
+                                                  </div>
+
+                                                  <div style="float:left;">
+                                                    <div style="width:140px;">
+                                                      <div class="input-group" style="margin-left:20px;">
+                                                         <span class="input-group-btn">
+                                                             <button id="minus7" type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-minus"></span>
+                                                             </button>
+                                                         </span>
+                                                         <input id="layerpop_num7" type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="8">
+                                                         <span class="input-group-btn">
+                                                             <button id="plus7" type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-plus"></span>
+                                                             </button>
+                                                         </span>
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                               </div>
+                                               <div style="clear:left;"></div>
+                                               <hr></hr>
+                                               <div style="margin: 0 auto;">
+                                                 <div style="float:left;">
+                                                   <h4 class="intro-text text-left">총 판매가 : </h4>
+                                                 </div>
+
+                                                 <div style="float:left;">
+                                                    <h4 style="margin-left:10px;">
+                                                      <span id=layerpop_val7>11000</span>
+                                                    </h4>
+                                                </div>
+
+                                                <div style="float:left;">
+                                                 <h4 style="margin-left:10px;" class="intro-text text-left">원</h4>
+                                               </div>
+                                              </div>
+                                              <div style="clear:left;"></div>
+                                              <hr class="visible-xs">
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <!-- Footer -->
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">구매</button>
+                                            <button id="layerpop_cancel7" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+              </center>
+            </br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Features -->
+
+</body>
+</html>
