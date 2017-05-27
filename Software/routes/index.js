@@ -415,7 +415,101 @@ router.get('/mypage', function(req, res, next) {
 	});
 });
 
+router.post('/mypage', function(req,res,next){
+	var button = req.body.button;
+	var userid = req.body.user_id;
+	var password = req.body.password;
+	var logoutsignal = req.body.logout_signal;
+	var logoutid = req.body.logout_id;
+	var curpasswd = req.body.curpasswd;
+	var curpasswdagain = req.body.curpasswdagain;
+	var newpasswd = req.body.newpasswd;
+	var newpasswdagain = req.body.newpasswdagain;
+	var name = req.body.name;
+	var phone = req.body.phone;
+	var email = req.body.email;
+	var birth = req.body.birth;
 
+
+	pool.getConnection(function (err, connection) {
+		// Use the connectio
+		var sqlForchange = "SELECT * FROM clientinfo WHERE id='"+userid+"' and passwd='" +password+ "'";
+		var sqlForchange2 = "UPDATE clientinfo set passwd='" +newpasswd+ "' where id='" +userid+ "'";
+		var sqlForchange3 = "UPDATE clientinfo set name='" +name+ "', phone='" +phone+ "', email='" +email+ "', birth='" +birth+ "' where id='" +userid+ "'";
+		var sqlForchange4 = "DELETE from clientinfo where id='" +userid+ "'";
+		
+		if(button == 'withdrawal'){
+			connection.query(sqlForchange, function(err, result){
+				if(err) console.error("err : " + err);
+				console.log("result : " + JSON.stringify(result));
+			}) 
+			if(result[0].passwd != curpasswd){
+				res.send("<script> alert('비밀번호가 틀렸습니다.');history.back();</script>");
+			}
+			else if(curpasswd != curpasswdagain){
+				res.send("<script> alert('비밀번호가 틀렸습니다.');history.back();</script>");
+			}
+			else{
+				connection.query(sqlForchange4, function(err, result3){
+					if(err) console.error("err : " + err);
+					console.log("result3 : " + JSON.stringify(result3)); 
+
+					res.send("<script> alert('이용 해 주셔서 감사합니다. 정상적으로 회원 탈퇴 처리 되었습니다.');history.back();</script>");
+					
+				});
+				connection.release();
+			}
+
+		}
+		else if(button == 'info'){
+			if(name == ''){
+				res.send("<script> alert('이름을 입력 해 주세요.');history.back();</script>");
+			}
+			else if(phone == ''){
+				res.send("<script> alert('연락처를 입력 해 주세요.');history.back();</script>");
+			}
+			else if(email == ''){
+				res.send("<script> alert('이메일을 입력 해 주세요.');history.back();</script>");
+			}
+			else if(birth == ''){
+				res.send("<script> alert('생년월일을 입력 해 주세요.');history.back();</script>");
+			}
+			else{
+				connection.query(sqlForchange3, function(err, result3){
+					if(err) console.error("err : " + err);
+					console.log("result3 : " + JSON.stringify(result3)); 
+
+					res.send("<script> alert('개인 정보가 성공적으로 변경 되었습니다.');history.back();</script>");
+					connection.release();
+				});
+			}
+		}
+		else{
+			connection.query(sqlForchange, function(err, result){
+				if(err) console.error("err : " + err);
+				console.log("result : " + JSON.stringify(result)); 
+
+				if(result[0].passwd != curpasswd){
+					res.send("<script> alert('비밀번호가 틀렸습니다.');history.back();</script>");
+				}
+				else{
+					if(newpasswd != newpasswdagain){
+						res.send("<script> alert('바꾸려는 비밀번호가 일치하지 않습니다.');history.back();</script>");	
+					}
+					else{
+						connection.query(sqlForchange2, function(err, result2){
+							if(err) console.error("err : " + err);
+							console.log("result2 : " + JSON.stringify(result2));
+						});
+						res.send("<script> alert('비밀번호가 성공적으로 변경 되었습니다.');history.back();</script>");
+					}
+				}
+				
+				connection.release();
+			});
+		}
+	});
+});
 
 
 module.exports = router;

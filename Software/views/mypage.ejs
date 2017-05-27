@@ -260,11 +260,56 @@
           <td>일반</td>
           <% } %>
         </tr>
-        <tr>
-          <td colspan="2">
-            <button class="btn btn-danger" style="padding:10px; float:right">회원 탈퇴</button>
-          </td>
-        </tr>
+        <form action="/mypage" accept-charset="UTF-8" role="form" method="post" action="">
+          <input type="hidden" name="user_id" value="<%=loginsignal[0].id%>"/>
+          <input type="hidden" name="password" value="<%=loginsignal[0].passwd%>" />
+          <tr>
+            <td colspan="2">
+              <button name="button" value="withdrawal" class="btn btn-danger" style="padding:10px; float:right" data-target="#withdrawal" data-toggle='modal'>회원 탈퇴</button>
+            </td>
+
+            <div class="modal fade" id="withdrawal" >
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <!-- header -->
+                  <div class="modal-header">
+                    <!-- 닫기(x) 버튼 -->
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <!-- header title -->
+                    <h5 style="text-align:center;" class="modal-title">정말로 회원 탈퇴를 하시겠습니까?</h5>
+                    </div>
+                    <!-- body -->
+                    <div class="box">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <div class="login-box well">
+                              <form action="/" accept-charset="UTF-8" role="form" method="post" action="">
+                                <input type="hidden" name="logout_signal" value="0"/>
+                                  <div class="form-group">
+                                      <label for="curpasswd">비밀번호 입력</label>
+                                      <input name="curpasswd" id="curpasswd" type="text" class="form-control" />
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="curpasswdagain">비밀번호 재입력</label>
+                                      <input name="curpasswdagain" id="curpasswdagain" type="password" class="form-control" />
+                                  </div>
+                                   
+                                  <div class="form-group">
+                                      <button type="submit" class="btn btn-default btn-block m-t-md" value="Login"><strong>회원 탈퇴</strong></button>                             
+                                  </div>    
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>     
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+          </tr>
+        </form>
       </tbody>
     </table>
   </div>
@@ -278,7 +323,9 @@
       </thead>
       <br>
       <tbody>
-        <form action="/change" method="post" enctype="multipart/form-data">
+        <form action="/mypage" accept-charset="UTF-8" role="form" method="post" action="">
+          <input type="hidden" name="user_id" value="<%=loginsignal[0].id%>"/>
+          <input type="hidden" name="password" value="<%=loginsignal[0].passwd%>" />
           <tr>
             <th>현재 비밀번호</th>
             <td><input type="text" name="curpasswd" class="form-control"/></td>
@@ -293,7 +340,7 @@
           </tr>
           <tr>
             <td colspan="2">
-              <button type="submit" class="btn btn-primary" style="padding:10px; float:right">비밀번호 변경</button>
+              <button name="button" value="passwd" type="submit" class="btn btn-primary" style="padding:10px; float:right">비밀번호 변경</button>
             </td>
           </tr>
         </form>
@@ -311,26 +358,27 @@
       </thead>
       <br>
       <tbody>
-        <form method="post" enctype="multipart/form-data">
+        <form action="/mypage" accept-charset="UTF-8" role="form" method="post" action="">
+          <input type="hidden" name="user_id" value="<%=loginsignal[0].id%>"/>
           <tr>
             <th>이름</th>
-            <td><input type="text" placeholder="서현빈" name="name" class="form-control"/></td>
+            <td><input type="text" placeholder="<%=loginsignal[0].name%>" name="name" class="form-control"/></td>
           </tr>
           <tr>
             <th>연락처</th>
-            <td><input type="text" placeholder="01067220655" name="phonenum" class="form-control"/></td>
+            <td><input type="text" placeholder="<%=loginsignal[0].phone%>" name="phone" class="form-control"/></td>
           </tr>
           <tr>
             <th>이메일</th>
-            <td><input type="text" placeholder="shb1363@naver.com" name="email" class="form-control"/></td>
+            <td><input type="text" placeholder="<%=loginsignal[0].email%>" name="email" class="form-control"/></td>
           </tr>
           <tr>
             <th>생년월일</th>
-            <td><input type="text" placeholder="910603" name="content" class="form-control"/></textarea></td>
+            <td><input type="text" placeholder="<%=loginsignal[0].birth%>" name="birth" class="form-control"/></textarea></td>
           </tr>
           <tr>
             <td colspan="2">
-              <button class="btn btn-primary" style="padding:10px; float:right">정보 수정</button>
+              <button name="button" value="info" type="submit" class="btn btn-primary" style="padding:10px; float:right">정보 수정</button>
             </td>
           </tr>
         </form>
