@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="/javascripts/jquery-3.2.1.min.js"></script>
+  <title>Clientinfo_delete</title>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+  <h1>클라이언트 정보 데이터베이스 삭제</h1>
+
+  <!--수정 요망-->
+  <form action="/clientinfo_delete" method="post">
+    <table border="1">
+      <input type="hidden" name="idx" value="<%=row.idx%>"/>
+      <tr>
+        <td>ID</td>
+        <td><%=row.title%></td>
+      </tr>
+      <tr>
+        <td>PASSWD</td>
+        <td><%=row.content%></td>
+      </tr>
+      <tr>
+        <td>로그인 여부</td>
+        <td><%=row.title%></td>
+      </tr>
+      <tr>
+        <td>이름</td>
+        <td><%=row.title%></td>
+      </tr>
+      <tr>
+        <td>생년월일</td>
+        <td><%=row.title%></td>
+      </tr>
+      <tr>
+        <td>VIP</td>
+        <td><%=row.title%></td>
+      </tr>
+      <tr>
+        <td>히트</td>
+        <td><%=row.title%></td>
+      </tr>
+      <tr>
+        <td>마일리지</td>
+        <td><%=row.title%></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button type="submit">글 삭제</button>
+          <a href="/clientinfo_list">리스트로 돌아가기</a>
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>

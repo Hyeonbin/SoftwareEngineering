@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="/javascripts/jquery-3.2.1.min.js"></script>
+  <title>Movieinfo_read</title>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+  <h1>영화 정보 데이터베이스 읽기</h1>
+
+  <form action="/movieinfo_update" method="get">
+    <table border="1">
+      <input type="hidden" name="idx" value="<%=row.idx%>"/>
+      <tr>
+        <td>제목</td>
+        <td><%=row.title%></td>
+      </tr>
+      <tr>
+        <td>등급</td>
+        <td><%=row.content%></td>
+      </tr>
+      <tr>
+        <td>장르</td>
+        <td><%=row.title%></td>
+      </tr>
+      <tr>
+        <td>개봉일</td>
+        <td><%=row.title%></td>
+      </tr>
+      <tr>
+        <td>감독</td>
+        <td><%=row.title%></td>
+      </tr>
+      <tr>
+        <td>출연진</td>
+        <td><%=row.title%></td>
+      </tr>
+      <tr>
+        <td>러닝타임</td>
+        <td><%=row.title%></td>
+      </tr>
+      <tr>
+        <td>관객수</td>
+        <td><%=row.title%></td>
+      </tr>
+      <tr>
+        <td>점수 준 관객수</td>
+        <td><%=row.title%></td>
+      </tr>
+      <tr>
+        <td>총점</td>
+        <td><%=row.title%></td>
+      </tr>
+      <tr>
+        <td>상영여부</td>
+        <td><%=row.title%></td>
+      </tr>
+      <tr>
+        <td>이미지</td>
+        <td><%=row.hit%></td>
+      </tr>
+      <tr>
+        <td>이미지2</td>
+        <td><img src="<%=row.image%>"></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button type="submit">글 수정</button>
+          <a href="/movieinfo_list">리스트로 돌아가기</a>
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="/javascripts/jquery-3.2.1.min.js"></script>
+  <title>Logindb_write</title>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+  <h1>로그인 데이터베이스 입력</h1>
+
+  <!--수정 요망-->
+  <form action="/logindb_write" method="post" onsubmit="return onWriteSubmit()">
+    <table border="1">
+      <tr>
+        <td>로그인</td>
+        <td><input type="text" name="creator_id" id="creator_id" required/></td>
+      </tr>
+      <tr>
+        <td>로그아웃</td>
+        <td><input type="text" name="title" id="title" required/></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button type="submit">글쓰기</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  <!--수정 요망-->
+  <script>
+    function onWriteSubmit()
+    {
+      if($("#creator_id").val().trim() == "" )
+      {
+          var message = "아이디를 입력해 주세요";
+          #("#creator_id").val("");
+          $("#creator_id").focus();
+          alert(message);
+          return false;
+      }
+
+      if($("#title").val().trim() == "" )
+      {
+          var message = "제목을 입력해 주세요";
+          #("#title").val("");
+          $("#title").focus();
+          alert(message);
+          return false;
+      }
+
+    }
+  </script>
+</body>
+</html>

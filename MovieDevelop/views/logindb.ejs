@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Logindb</title>
+  <meta charset="utf-8">
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link href="css/half-slider.css" rel="stylesheet">
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/angular.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+         data-target="#nav-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Max Movie</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="nav-toggle">
+        <ul class="nav navbar-nav">
+          <li><a href="/logindb_list" class="active">로그인</a></li>
+          <li><a href="/clientinfo_list">클라이언트인포</a></li>
+          <li><a href="/movieinfo_list">무비인포</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <br>
+  <br>
+  <h1>로그인 데이터베이스</h1>
+
+  <!--로그인 디비 읽어서 대입-->
+  <a href="/logindb_write">정보 추가</a>
+  <br>
+  <br>
+
+  <table border="1">
+    <tr>
+      <td>번호</td>
+      <td>로그인 상태</td>
+      <td></td>
+    </tr>
+<%
+    for(var i=0; i<rows.length; i++)
+    {
+      var oneItem = rows[i];
+%>
+    <!--수정 요망-->
+    <tr>
+      <td><%=oneItem.idx%></td>
+      <td><a href="/logindb_read/<%=oneItem.idx%>"><%=oneItem.title%></a></td>
+      <td><a href="/logindb_delete/<%=oneItem.idx%>">삭제</a></td>
+    </tr>
+<%
+    }
+%>
+  </table>
+</body>
+</html>
