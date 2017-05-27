@@ -226,19 +226,39 @@
       <tbody>
         <tr>
           <th>이름</th>
-          <td>서현빈</td>
+          <td><%=loginsignal[0].name%></td>
         </tr>
         <tr>
           <th>연락처</th>
-          <td>01067220655</td>
+          <td><%=loginsignal[0].phone%></td>
         </tr>
         <tr>
           <th>이메일</th>
-          <td>shb1363@naver.com</td>
+          <td><%=loginsignal[0].email%></td>
         </tr>
         <tr>
           <th>생년월일</th>
-          <td>910603</td>
+          <td><%=loginsignal[0].birth%></td>
+        </tr>
+        <tr>
+          <th>마일리지</th>
+          <td><%=loginsignal[0].mileage%></td>
+        </tr>
+
+        <tr>
+          <th>등급</th>
+          <% if (loginsignal[0].hit >= 50) {%>
+          <td>VIP</td>
+          <% } %>
+          <% if (loginsignal[0].hit >= 30) {%>
+          <td>골드</td>
+          <% } %>
+          <% if (loginsignal[0].hit >= 10) {%>
+          <td>실버</td>
+          <% } %>
+          <% if (loginsignal[0].hit < 10) {%>
+          <td>일반</td>
+          <% } %>
         </tr>
         <tr>
           <td colspan="2">
@@ -258,7 +278,7 @@
       </thead>
       <br>
       <tbody>
-        <form method="post" enctype="multipart/form-data">
+        <form action="/change" method="post" enctype="multipart/form-data">
           <tr>
             <th>현재 비밀번호</th>
             <td><input type="text" name="curpasswd" class="form-control"/></td>
@@ -273,13 +293,14 @@
           </tr>
           <tr>
             <td colspan="2">
-              <button class="btn btn-primary" style="padding:10px; float:right">비밀번호 변경</button>
+              <button type="submit" class="btn btn-primary" style="padding:10px; float:right">비밀번호 변경</button>
             </td>
           </tr>
         </form>
       </tbody>
     </table>
   </div>
+
   <div style="clear:right;"></div>
 
   <div style="display:none" id="reviseform" class="container">

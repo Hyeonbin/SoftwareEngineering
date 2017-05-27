@@ -14,7 +14,6 @@ router.get('/', function(req, res, next) {
 	pool.getConnection(function (err, connection) {
 		// Use the connection
 		var sqlForSelectList = "SELECT * FROM movieinfo ORDER BY people DESC";
-		var whoForSelect = ""
 		
 		connection.query(sqlForSelectList, function (err,rows) {
 			if (err) console.error("err : " + err);
@@ -43,7 +42,8 @@ router.get('/', function(req, res, next) {
 						connection.query(sqlForSelectList5, function (err,loginsignal2) {
 							if (err) console.error("err : " + err);
 							console.log("loginsignal2 : " + JSON.stringify(loginsignal2));
-							res.render('index', {title: ' 영화 정보', rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2});
+							
+							res.render('index', {title: ' 영화 정보', rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2});		
 						// Don't use the connection here, it has been returned to the pool.
 						});
 					// Don't use the connection here, it has been returned to the pool.
@@ -199,7 +199,15 @@ router.get('/movie', function(req, res, next) {
 						connection.query(sqlForSelectList5, function (err,loginsignal2) {
 							if (err) console.error("err : " + err);
 							console.log("loginsignal2 : " + JSON.stringify(loginsignal2));
-							res.render('movie', {title: ' 영화 정보', rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2});
+
+							var sqlForSelectList6 = "SELECT * FROM movieinfo ORDER BY score DESC";
+							
+							connection.query(sqlForSelectList6, function (err,rows0) {
+							if (err) console.error("err : " + err);
+							console.log("rows0 : " + JSON.stringify(rows0));
+							
+							res.render('movie', {title: ' 영화 정보', rows0:rows0, rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2});
+							});	
 						// Don't use the connection here, it has been returned to the pool.
 						});
 						
