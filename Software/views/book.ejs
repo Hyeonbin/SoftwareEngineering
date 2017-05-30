@@ -144,6 +144,18 @@
   </header>
   <hr>
 
+  <script type="text/javascript">
+  $(function(){
+    $("#movie_1").click(function(){
+      alert('버튼클릭');
+        $("#step1_bt").removeClass("active");
+        $("#step1_bt").addClass("complete");
+        $("#step2_bt").removeClass("disabled");
+        $("#step2_bt").addClass("active");
+    });
+  });
+  </script>
+
   <div class="container">
     <div class="alert alert-info">
 
@@ -163,7 +175,7 @@
               </div>
             </div>
 
-            <div class="col-xs-3 bs-wizard-step disabled" id="step2_bt"><!-- complete / active / disabled -->
+            <div id="step2_bt" class="col-xs-3 bs-wizard-step disabled"><!-- complete / active / disabled -->
               <div class="text-center bs-wizard-stepnum">
                 Step 2
               </div>
@@ -326,7 +338,8 @@
                           <tr>
                             <td></td>
                             <td>1관</td>
-                            <td>09:00</td>
+                            <td><a href="#seat" id="A_a_1" data-toggle="tab" aria-expanded="false">09:00</a></td>
+
                           </tr>
                           <tr>
                             <td></td>
@@ -662,17 +675,6 @@
 
   <script type="text/javascript">
   $(function(){
-    $("#movie_1").click(function(){
-        $("#step1_bt").removeClass("active");
-        $("#step1_bt").addClass("complete");
-        $("#step2_bt").addClass("disabled");
-        $("#step2_bt").addClass("active");
-    });
-  });
-  </script>
-
-  <script type="text/javascript">
-  $(function(){
     $("#btn1").click(function(){
         $("#btn1_setting").removeClass("active");
         $("#btn2_setting").removeClass("active");
@@ -682,40 +684,6 @@
     });
   });
   </script>
-
-  <script type="text/javascript">
-  $(function(){
-    $("#btn2").click(function(){
-        $("#btn2_setting").addClass("active");
-        $("#btn1_setting").removeClass("active");
-        $("#btn3_setting").removeClass("active");
-        $("#btn4_setting").removeClass("active");
-    });
-  });
-  </script>
-
-  <script type="text/javascript">
-  $(function(){
-    $("#btn3").click(function(){
-        $("#btn3_setting").addClass("active");
-        $("#btn1_setting").removeClass("active");
-        $("#btn2_setting").removeClass("active");
-        $("#btn4_setting").removeClass("active");
-    });
-  });
-  </script>
-
-  <script type="text/javascript">
-  $(function(){
-    $("#btn4").click(function(){
-        $("#btn4_setting").addClass("active");
-        $("#btn1_setting").removeClass("active");
-        $("#btn2_setting").removeClass("active");
-        $("#btn3_setting").removeClass("active");
-    });
-  });
-  </script>
-
 
 
 </body>
