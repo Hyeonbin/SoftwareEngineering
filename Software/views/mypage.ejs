@@ -260,14 +260,13 @@
           <td>일반</td>
           <% } %>
         </tr>
-        <form action="/mypage" accept-charset="UTF-8" role="form" method="post" action="">
-          <input type="hidden" name="user_id" value="<%=loginsignal[0].id%>"/>
-          <input type="hidden" name="password" value="<%=loginsignal[0].passwd%>" />
           <tr>
             <td colspan="2">
-              <button name="button" value="withdrawal" class="btn btn-danger" style="padding:10px; float:right" data-target="#withdrawal" data-toggle='modal'>회원 탈퇴</button>
+              <button class="btn btn-danger" style="padding:10px; float:right" data-target="#withdrawal" data-toggle='modal'>회원 탈퇴</button>
             </td>
-
+            <form action="/mypage" accept-charset="UTF-8" role="form" method="post" action="">
+              <input type="hidden" name="user_id" value="<%=loginsignal[0].id%>"/>
+              <input type="hidden" name="password" value="<%=loginsignal[0].passwd%>" />
             <div class="modal fade" id="withdrawal" >
               <div class="modal-dialog modal-sm">
                 <div class="modal-content">
@@ -296,7 +295,7 @@
                                   </div>
                                    
                                   <div class="form-group">
-                                      <button type="submit" class="btn btn-default btn-block m-t-md" value="Login"><strong>회원 탈퇴</strong></button>                             
+                                      <button name="button" value="withdrawal" type="submit" class="btn btn-default btn-block m-t-md" value="Login"><strong>회원 탈퇴</strong></button>                             
                                   </div>    
                               </form>
                             </div>
@@ -307,9 +306,9 @@
                   </div>
                 </div>
               </div>
-
+            </form>
           </tr>
-        </form>
+
       </tbody>
     </table>
   </div>

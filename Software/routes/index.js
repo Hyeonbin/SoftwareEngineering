@@ -6,7 +6,7 @@ var pool = mysql.createPool({
 	host: 'localhost',
 	user: 'root',
 	database: 'theater',
-	password: 'mean8592'
+	password: 'cndgus78'
 });
 
 /* GET home page. */
@@ -415,6 +415,89 @@ router.get('/mypage', function(req, res, next) {
 	});
 });
 
+router.get('/join', function(req, res, next) {
+	pool.getConnection(function (err, connection) {
+		// Use the connection
+		var sqlForSelectList = "SELECT * FROM movieinfo ORDER BY people DESC";
+
+		connection.query(sqlForSelectList, function (err,rows) {
+			if (err) console.error("err : " + err);
+			console.log("rows : " + JSON.stringify(rows));
+
+			var sqlForSelectList2 = "SELECT * FROM movieinfo WHERE ing=0 ORDER BY openday DESC";
+
+			connection.query(sqlForSelectList2, function (err,rows2) {
+				if (err) console.error("err : " + err);
+				console.log("rows2 : " + JSON.stringify(rows2));
+
+				var sqlForSelectList3 = "SELECT * FROM movieinfo WHERE ing=1 ORDER BY openday ";
+
+				connection.query(sqlForSelectList3, function (err,rows3) {
+					if (err) console.error("err : " + err);
+					console.log("rows3 : " + JSON.stringify(rows3));
+
+					var sqlForSelectList4 = "SELECT * FROM clientinfo ORDER BY loginok DESC";
+
+					connection.query(sqlForSelectList4, function (err,loginsignal) {
+						if (err) console.error("err : " + err);
+						console.log("loginsignal : " + JSON.stringify(loginsignal));
+
+						var sqlForSelectList5 = "SELECT * FROM logindb";
+
+						connection.query(sqlForSelectList5, function (err,loginsignal2) {
+							if (err) console.error("err : " + err);
+							console.log("loginsignal2 : " + JSON.stringify(loginsignal2));
+							res.render('join', {title: ' 영화 정보', rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2});
+						// Don't use the connection here, it has been returned to the pool.
+						});
+
+					// Don't use the connection here, it has been returned to the pool.
+					});
+				// Don't use the connection here, it has been returned to the pool.
+				});
+
+				// Don't use the connection here, it has been returned to the pool.
+			});
+		connection.release();
+		});
+	});
+});
+
+router.post('/join', function(req, res, next) {
+	var id = req.body.id;
+	var passwd = req.body.passwd;
+	var passwdagain = req.body.passwdagain;
+	var name = req.body.name;
+	var birth = req.body.birth;
+	var phone = req.body.phone;
+	var email = req.body.email;
+	console.log("askaskasksak : " + id);
+
+	pool.getConnection(function (err, connection) {
+		// Use the connection
+		var sqlForjoin = "SELECT * FROM clientinfo WHERE id='"+id+"'";
+		var sqlForjoin2 = "INSERT into clientinfo (`id`, `passwd`, `name`, `birth`, `phone`, `email`) VALUES ('"+ id + "', '" + passwd + "', '" + name + "', '" + birth + "', '" + phone + "', '" + email + "')";
+
+		//connection.query(sqlForjoin, function(err, result){
+		//	if (err) console.error("err : " + err);
+		//	console.log("result : " + JSON.stringify(result));
+		//	if(result[0].id == id){
+		//		res.send("<script> alert('이미 존재하는 아이디 입니다.');history.back();</script>");
+		//		connection.release();
+		//	}
+		//	else{
+				connection.query(sqlForjoin2, function(err, result2){
+					if (err) console.error("err : " + err);
+					console.log("result2 : " + JSON.stringify(result2));
+				})
+				res.redirect('/');
+				connection.release();
+				
+		//	}
+		//})
+	});
+});
+
 router.post('/mypage', function(req,res,next){
 	var button = req.body.button;
 	var userid = req.body.user_id;
@@ -437,28 +520,33 @@ router.post('/mypage', function(req,res,next){
 		var sqlForchange2 = "UPDATE clientinfo set passwd='" +newpasswd+ "' where id='" +userid+ "'";
 		var sqlForchange3 = "UPDATE clientinfo set name='" +name+ "', phone='" +phone+ "', email='" +email+ "', birth='" +birth+ "' where id='" +userid+ "'";
 		var sqlForchange4 = "DELETE from clientinfo where id='" +userid+ "'";
+		var sqlForchange5 = "UPDATE logindb set login='0';"
 
 		if(button == 'withdrawal'){
 			connection.query(sqlForchange, function(err, result){
 				if(err) console.error("err : " + err);
 				console.log("result : " + JSON.stringify(result));
+			
+				if(result[0].passwd != curpasswd){
+				res.send("<script> alert('비밀번호가 틀렸습니다.');history.back();</script>");
+				}
+				else if(curpasswd != curpasswdagain){
+					res.send("<script> alert('비밀번호가 틀렸습니다.');history.back();</script>");
+				}
+				else{
+					connection.query(sqlForchange4, function(err, result3){
+						if(err) console.error("err : " + err);
+						console.log("result3 : " + JSON.stringify(result3));
+						connection.query(sqlForchange5, function(err, result4){
+							if(err) console.error("err : " + err);
+							console.log("result4 : " + JSON.stringify(result4));
+							res.redirect('/')
+						});
+					});
+					connection.release();
+				}
 			})
-			if(result[0].passwd != curpasswd){
-				res.send("<script> alert('비밀번호가 틀렸습니다.');history.back();</script>");
-			}
-			else if(curpasswd != curpasswdagain){
-				res.send("<script> alert('비밀번호가 틀렸습니다.');history.back();</script>");
-			}
-			else{
-				connection.query(sqlForchange4, function(err, result3){
-					if(err) console.error("err : " + err);
-					console.log("result3 : " + JSON.stringify(result3));
-
-					res.send("<script> alert('이용 해 주셔서 감사합니다. 정상적으로 회원 탈퇴 처리 되었습니다.');history.back();</script>");
-
-				});
-				connection.release();
-			}
+			
 
 		}
 		else if(button == 'info'){
@@ -508,6 +596,26 @@ router.post('/mypage', function(req,res,next){
 				connection.release();
 			});
 		}
+	});
+});
+
+router.post('/customer', function(req,res,next){
+	var name = req.body.name;
+	var phone = req.body.phone;
+	var email = req.body.email;
+	var title = req.body.title;
+	var content = req.body.content;
+
+	pool.getConnection(function (err, connection) {
+		var sqlForqna = "INSERT into inquiry(`phone`, `writer`, `email`, `title`, `content`) VALUES ('" + phone + "', '" + name + "', '" + email + "' , '" + title + "', '" + content + "')";
+	
+		connection.query(sqlForqna, function(err, result){
+			if(err) console.error("err : ", err);
+			console.log("result : " + JSON.stringify(result));
+			res.send("<script> alert('빠른 시일 내로 답변 드리겠습니다. 감사합니다.');history.back();</script>");
+			connection.release();
+		})
+			
 	});
 });
 
