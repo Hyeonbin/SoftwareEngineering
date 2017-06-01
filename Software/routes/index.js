@@ -328,7 +328,14 @@ router.get('/book-4', function(req, res, next) {
 						connection.query(sqlForSelectList5, function (err,loginsignal2) {
 							if (err) console.error("err : " + err);
 							console.log("loginsignal2 : " + JSON.stringify(loginsignal2));
-							res.render('book-4', {title: ' 영화 정보', rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2});
+
+							var sqlForbook3="select * from theaterinfo where area2='강남'";
+
+							connection.query(sqlForbook3, function (err,seat) {
+								if (err) console.error("err : " + err);
+								console.log("seat : " + JSON.stringify(seat));
+							res.render('book-4', {title: ' 영화 정보', rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2, seat:seat});
+						});
 						// Don't use the connection here, it has been returned to the pool.
 						});
 
