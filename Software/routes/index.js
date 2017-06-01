@@ -6,7 +6,7 @@ var pool = mysql.createPool({
 	host: 'localhost',
 	user: 'root',
 	database: 'theater',
-	password: 'cndgus78'
+	password: 'mean8592'
 });
 
 /* GET home page. */
@@ -119,7 +119,7 @@ router.post('/', function(req,res,next){
 	});
 });
 
-router.get('/book', function(req, res, next) {
+router.get('/book-1', function(req, res, next) {
 	pool.getConnection(function (err, connection) {
 		// Use the connection
 		var sqlForSelectList = "SELECT * FROM movieinfo ORDER BY people DESC";
@@ -151,7 +151,151 @@ router.get('/book', function(req, res, next) {
 						connection.query(sqlForSelectList5, function (err,loginsignal2) {
 							if (err) console.error("err : " + err);
 							console.log("loginsignal2 : " + JSON.stringify(loginsignal2));
-							res.render('book', {title: ' 영화 정보', rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2});
+							res.render('book-1', {title: ' 영화 정보', rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2});
+						// Don't use the connection here, it has been returned to the pool.
+						});
+
+					// Don't use the connection here, it has been returned to the pool.
+					});
+				// Don't use the connection here, it has been returned to the pool.
+				});
+
+				// Don't use the connection here, it has been returned to the pool.
+			});
+		connection.release();
+		});
+	});
+});
+
+router.get('/book-2', function(req, res, next) {
+	pool.getConnection(function (err, connection) {
+		// Use the connection
+		var sqlForSelectList = "SELECT * FROM movieinfo ORDER BY people DESC";
+
+		connection.query(sqlForSelectList, function (err,rows) {
+			if (err) console.error("err : " + err);
+			console.log("rows : " + JSON.stringify(rows));
+
+			var sqlForSelectList2 = "SELECT * FROM movieinfo WHERE ing=0 ORDER BY openday DESC";
+
+			connection.query(sqlForSelectList2, function (err,rows2) {
+				if (err) console.error("err : " + err);
+				console.log("rows2 : " + JSON.stringify(rows2));
+
+				var sqlForSelectList3 = "SELECT * FROM movieinfo WHERE ing=1 ORDER BY openday ";
+
+				connection.query(sqlForSelectList3, function (err,rows3) {
+					if (err) console.error("err : " + err);
+					console.log("rows3 : " + JSON.stringify(rows3));
+
+					var sqlForSelectList4 = "SELECT * FROM clientinfo ORDER BY loginok DESC";
+
+					connection.query(sqlForSelectList4, function (err,loginsignal) {
+						if (err) console.error("err : " + err);
+						console.log("loginsignal : " + JSON.stringify(loginsignal));
+
+						var sqlForSelectList5 = "SELECT * FROM logindb";
+
+						connection.query(sqlForSelectList5, function (err,loginsignal2) {
+							if (err) console.error("err : " + err);
+							console.log("loginsignal2 : " + JSON.stringify(loginsignal2));
+							res.render('book-2', {title: ' 영화 정보', rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2});
+						// Don't use the connection here, it has been returned to the pool.
+						});
+
+					// Don't use the connection here, it has been returned to the pool.
+					});
+				// Don't use the connection here, it has been returned to the pool.
+				});
+
+				// Don't use the connection here, it has been returned to the pool.
+			});
+		connection.release();
+		});
+	});
+});
+
+router.get('/book-3', function(req, res, next) {
+	pool.getConnection(function (err, connection) {
+		// Use the connection
+		var sqlForSelectList = "SELECT * FROM movieinfo ORDER BY people DESC";
+
+		connection.query(sqlForSelectList, function (err,rows) {
+			if (err) console.error("err : " + err);
+			console.log("rows : " + JSON.stringify(rows));
+
+			var sqlForSelectList2 = "SELECT * FROM movieinfo WHERE ing=0 ORDER BY openday DESC";
+
+			connection.query(sqlForSelectList2, function (err,rows2) {
+				if (err) console.error("err : " + err);
+				console.log("rows2 : " + JSON.stringify(rows2));
+
+				var sqlForSelectList3 = "SELECT * FROM movieinfo WHERE ing=1 ORDER BY openday ";
+
+				connection.query(sqlForSelectList3, function (err,rows3) {
+					if (err) console.error("err : " + err);
+					console.log("rows3 : " + JSON.stringify(rows3));
+
+					var sqlForSelectList4 = "SELECT * FROM clientinfo ORDER BY loginok DESC";
+
+					connection.query(sqlForSelectList4, function (err,loginsignal) {
+						if (err) console.error("err : " + err);
+						console.log("loginsignal : " + JSON.stringify(loginsignal));
+
+						var sqlForSelectList5 = "SELECT * FROM logindb";
+
+						connection.query(sqlForSelectList5, function (err,loginsignal2) {
+							if (err) console.error("err : " + err);
+							console.log("loginsignal2 : " + JSON.stringify(loginsignal2));
+							res.render('book-3', {title: ' 영화 정보', rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2});
+						// Don't use the connection here, it has been returned to the pool.
+						});
+
+					// Don't use the connection here, it has been returned to the pool.
+					});
+				// Don't use the connection here, it has been returned to the pool.
+				});
+
+				// Don't use the connection here, it has been returned to the pool.
+			});
+		connection.release();
+		});
+	});
+});
+
+router.get('/book-4', function(req, res, next) {
+	pool.getConnection(function (err, connection) {
+		// Use the connection
+		var sqlForSelectList = "SELECT * FROM movieinfo ORDER BY people DESC";
+
+		connection.query(sqlForSelectList, function (err,rows) {
+			if (err) console.error("err : " + err);
+			console.log("rows : " + JSON.stringify(rows));
+
+			var sqlForSelectList2 = "SELECT * FROM movieinfo WHERE ing=0 ORDER BY openday DESC";
+
+			connection.query(sqlForSelectList2, function (err,rows2) {
+				if (err) console.error("err : " + err);
+				console.log("rows2 : " + JSON.stringify(rows2));
+
+				var sqlForSelectList3 = "SELECT * FROM movieinfo WHERE ing=1 ORDER BY openday ";
+
+				connection.query(sqlForSelectList3, function (err,rows3) {
+					if (err) console.error("err : " + err);
+					console.log("rows3 : " + JSON.stringify(rows3));
+
+					var sqlForSelectList4 = "SELECT * FROM clientinfo ORDER BY loginok DESC";
+
+					connection.query(sqlForSelectList4, function (err,loginsignal) {
+						if (err) console.error("err : " + err);
+						console.log("loginsignal : " + JSON.stringify(loginsignal));
+
+						var sqlForSelectList5 = "SELECT * FROM logindb";
+
+						connection.query(sqlForSelectList5, function (err,loginsignal2) {
+							if (err) console.error("err : " + err);
+							console.log("loginsignal2 : " + JSON.stringify(loginsignal2));
+							res.render('book-4', {title: ' 영화 정보', rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2});
 						// Don't use the connection here, it has been returned to the pool.
 						});
 
@@ -492,7 +636,7 @@ router.post('/join', function(req, res, next) {
 				})
 				res.redirect('/');
 				connection.release();
-				
+
 		//	}
 		//})
 	});
@@ -526,7 +670,7 @@ router.post('/mypage', function(req,res,next){
 			connection.query(sqlForchange, function(err, result){
 				if(err) console.error("err : " + err);
 				console.log("result : " + JSON.stringify(result));
-			
+
 				if(result[0].passwd != curpasswd){
 				res.send("<script> alert('비밀번호가 틀렸습니다.');history.back();</script>");
 				}
@@ -546,7 +690,7 @@ router.post('/mypage', function(req,res,next){
 					connection.release();
 				}
 			})
-			
+
 
 		}
 		else if(button == 'info'){
@@ -608,14 +752,14 @@ router.post('/customer', function(req,res,next){
 
 	pool.getConnection(function (err, connection) {
 		var sqlForqna = "INSERT into inquiry(`phone`, `writer`, `email`, `title`, `content`) VALUES ('" + phone + "', '" + name + "', '" + email + "' , '" + title + "', '" + content + "')";
-	
+
 		connection.query(sqlForqna, function(err, result){
 			if(err) console.error("err : ", err);
 			console.log("result : " + JSON.stringify(result));
 			res.send("<script> alert('빠른 시일 내로 답변 드리겠습니다. 감사합니다.');history.back();</script>");
 			connection.release();
 		})
-			
+
 	});
 });
 

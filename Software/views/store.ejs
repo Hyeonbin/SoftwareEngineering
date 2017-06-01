@@ -6,11 +6,11 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link href="css/half-slider.css" rel="stylesheet">
   <link href="css/star.css" rel="stylesheet">
-
+  <link href="css/style.css" rel="stylesheet">
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/angular.min.js"></script>
-  
+
 </head>
 
 <body>
@@ -28,7 +28,7 @@
 
       <div class="collapse navbar-collapse" id="nav-toggle">
         <ul class="nav navbar-nav">
-          <li><a href="/book">예매</a></li>
+          <li><a href="/book-1">예매</a></li>
           <li><a href="/movie">영화</a></li>
           <li><a href="/theater">영화관</a></li>
           <li class="active"><a href="/store">스토어</a></li>
@@ -74,12 +74,12 @@
                           <label for="password">비밀번호</label>
                           <input name="password" id="password" value='' placeholder="Password" type="password" class="form-control" />
                       </div>
-                       
+
                       <div class="form-group">
                           <button type="submit" class="btn btn-default btn-block m-t-md" value="Login">Login</button>
-                         
+
                       </div>
-                      
+
                       <input id="check" type="hidden" value="<%=loginsignal.length%>" />
 
                       <input id="cc" type="hidden" value="<%=loginsignal%>" />
@@ -93,7 +93,7 @@
                     </div>
                   </div>
                 </div>
-              </div>     
+              </div>
         </div>
       </div>
     </div>
@@ -128,7 +128,7 @@
                     </div>
                   </div>
                 </div>
-              </div>     
+              </div>
         </div>
       </div>
     </div>
@@ -137,7 +137,7 @@
   <header id="myCarousel" class="carousel">
     <div class="carousel-inner">
       <div class="item active">
-        <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide One');">
+        <div class="fill" style="background-image:url('img/store.jpg');">
         </div>
         <div class="carousel-caption" style="text-align:left">
           <h2>스토어</h2>
@@ -151,7 +151,7 @@
       $("#minus").click(function(){
         if($("#layerpop_num").val() > 1){
           $("#layerpop_num").val(+$("#layerpop_num").val() - 1);
-          var val = 11000 * $("#layerpop_num").val();
+          var val = 4000 * $("#layerpop_num").val();
           $("#layerpop_val").text(val);
         }
       });
@@ -163,7 +163,7 @@
       $("#plus").click(function(){
         if($("#layerpop_num").val() < 8) {
           $("#layerpop_num").val(+$("#layerpop_num").val() + 1);
-          var val = 11000 * $("#layerpop_num").val();
+          var val = 4000 * $("#layerpop_num").val();
           $("#layerpop_val").text(val);
         }
       });
@@ -174,7 +174,7 @@
     $(function(){
       $("#layerpop_cancel").click(function(){
         $("#layerpop_num").val(1);
-        $("#layerpop_val").text("11000");
+        $("#layerpop_val").text("4000");
       });
     });
   </script>
@@ -184,7 +184,7 @@
       $("#minus1").click(function(){
         if($("#layerpop_num1").val() > 1){
           $("#layerpop_num1").val(+$("#layerpop_num1").val() - 1);
-          var val = 11000 * $("#layerpop_num1").val();
+          var val = 3000 * $("#layerpop_num1").val();
           $("#layerpop_val1").text(val);
         }
       });
@@ -196,7 +196,7 @@
       $("#plus1").click(function(){
         if($("#layerpop_num1").val() < 8) {
           $("#layerpop_num1").val(+$("#layerpop_num1").val() + 1);
-          var val = 11000 * $("#layerpop_num1").val();
+          var val = 3000 * $("#layerpop_num1").val();
           $("#layerpop_val1").text(val);
         }
       });
@@ -207,7 +207,7 @@
     $(function(){
       $("#layerpop_cancel1").click(function(){
         $("#layerpop_num1").val(1);
-        $("#layerpop_val1").text("11000");
+        $("#layerpop_val1").text("3000");
       });
     });
   </script>
@@ -217,7 +217,7 @@
       $("#minus2").click(function(){
         if($("#layerpop_num2").val() > 1){
           $("#layerpop_num2").val(+$("#layerpop_num2").val() - 1);
-          var val = 11000 * $("#layerpop_num2").val();
+          var val = 3000 * $("#layerpop_num2").val();
           $("#layerpop_val2").text(val);
         }
       });
@@ -229,7 +229,7 @@
       $("#plus2").click(function(){
         if($("#layerpop_num2").val() < 8) {
           $("#layerpop_num2").val(+$("#layerpop_num2").val() + 1);
-          var val = 11000 * $("#layerpop_num2").val();
+          var val = 3000 * $("#layerpop_num2").val();
           $("#layerpop_val2").text(val);
         }
       });
@@ -240,7 +240,7 @@
     $(function(){
       $("#layerpop_cancel2").click(function(){
         $("#layerpop_num2").val(1);
-        $("#layerpop_val2").text("11000");
+        $("#layerpop_val2").text("3000");
       });
     });
   </script>
@@ -250,7 +250,7 @@
       $("#minus3").click(function(){
         if($("#layerpop_num3").val() > 1){
           $("#layerpop_num3").val(+$("#layerpop_num3").val() - 1);
-          var val = 11000 * $("#layerpop_num3").val();
+          var val = 3000 * $("#layerpop_num3").val();
           $("#layerpop_val3").text(val);
         }
       });
@@ -262,7 +262,7 @@
       $("#plus3").click(function(){
         if($("#layerpop_num3").val() < 8) {
           $("#layerpop_num3").val(+$("#layerpop_num3").val() + 1);
-          var val = 11000 * $("#layerpop_num3").val();
+          var val = 3000 * $("#layerpop_num3").val();
           $("#layerpop_val3").text(val);
         }
       });
@@ -273,7 +273,7 @@
     $(function(){
       $("#layerpop_cancel3").click(function(){
         $("#layerpop_num3").val(1);
-        $("#layerpop_val3").text("11000");
+        $("#layerpop_val3").text("3000");
       });
     });
   </script>
@@ -283,7 +283,7 @@
       $("#minus4").click(function(){
         if($("#layerpop_num4").val() > 1){
           $("#layerpop_num4").val(+$("#layerpop_num4").val() - 1);
-          var val = 11000 * $("#layerpop_num").val();
+          var val = 3000 * $("#layerpop_num").val();
           $("#layerpop_val4").text(val);
         }
       });
@@ -295,7 +295,7 @@
       $("#plus4").click(function(){
         if($("#layerpop_num4").val() < 8) {
           $("#layerpop_num4").val(+$("#layerpop_num4").val() + 1);
-          var val = 11000 * $("#layerpop_num4").val();
+          var val = 3000 * $("#layerpop_num4").val();
           $("#layerpop_val4").text(val);
         }
       });
@@ -306,7 +306,7 @@
     $(function(){
       $("#layerpop_cancel4").click(function(){
         $("#layerpop_num4").val(1);
-        $("#layerpop_val4").text("11000");
+        $("#layerpop_val4").text("3000");
       });
     });
   </script>
@@ -316,7 +316,7 @@
       $("#minus5").click(function(){
         if($("#layerpop_num5").val() > 1){
           $("#layerpop_num5").val(+$("#layerpop_num5").val() - 1);
-          var val = 11000 * $("#layerpop_num5").val();
+          var val = 2500 * $("#layerpop_num5").val();
           $("#layerpop_val5").text(val);
         }
       });
@@ -328,7 +328,7 @@
       $("#plus5").click(function(){
         if($("#layerpop_num5").val() < 8) {
           $("#layerpop_num5").val(+$("#layerpop_num5").val() + 1);
-          var val = 11000 * $("#layerpop_num5").val();
+          var val = 2500 * $("#layerpop_num5").val();
           $("#layerpop_val5").text(val);
         }
       });
@@ -339,7 +339,7 @@
     $(function(){
       $("#layerpop_cancel5").click(function(){
         $("#layerpop_num5").val(1);
-        $("#layerpop_val5").text("11000");
+        $("#layerpop_val5").text("2500");
       });
     });
   </script>
@@ -349,7 +349,7 @@
       $("#minus6").click(function(){
         if($("#layerpop_num6").val() > 1){
           $("#layerpop_num6").val(+$("#layerpop_num6").val() - 1);
-          var val = 11000 * $("#layerpop_num6").val();
+          var val = 2500 * $("#layerpop_num6").val();
           $("#layerpop_val6").text(val);
         }
       });
@@ -361,7 +361,7 @@
       $("#plus6").click(function(){
         if($("#layerpop_num6").val() < 8) {
           $("#layerpop_num6").val(+$("#layerpop_num6").val() + 1);
-          var val = 11000 * $("#layerpop_num6").val();
+          var val = 2500 * $("#layerpop_num6").val();
           $("#layerpop_val6").text(val);
         }
       });
@@ -372,7 +372,7 @@
     $(function(){
       $("#layerpop_cancel6").click(function(){
         $("#layerpop_num6").val(1);
-        $("#layerpop_val6").text("11000");
+        $("#layerpop_val6").text("2500");
       });
     });
   </script>
@@ -382,7 +382,7 @@
       $("#minus7").click(function(){
         if($("#layerpop_num7").val() > 1){
           $("#layerpop_num7").val(+$("#layerpop_num7").val() - 1);
-          var val = 11000 * $("#layerpop_num7").val();
+          var val = 2500 * $("#layerpop_num7").val();
           $("#layerpop_val7").text(val);
         }
       });
@@ -394,7 +394,7 @@
       $("#plus7").click(function(){
         if($("#layerpop_num7").val() < 8) {
           $("#layerpop_num7").val(+$("#layerpop_num7").val() + 1);
-          var val = 11000 * $("#layerpop_num7").val();
+          var val = 2500 * $("#layerpop_num7").val();
           $("#layerpop_val7").text(val);
         }
       });
@@ -405,9 +405,80 @@
     $(function(){
       $("#layerpop_cancel7").click(function(){
         $("#layerpop_num7").val(1);
-        $("#layerpop_val7").text("11000");
+        $("#layerpop_val7").text("2500");
       });
     });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#minus8").click(function(){
+        if($("#layerpop_num8").val() > 1){
+          $("#layerpop_num8").val(+$("#layerpop_num8").val() - 1);
+          var val = 6000 * $("#layerpop_num8").val();
+          $("#layerpop_val8").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#plus8").click(function(){
+        if($("#layerpop_num8").val() < 8) {
+          $("#layerpop_num8").val(+$("#layerpop_num8").val() + 1);
+          var val = 6000 * $("#layerpop_num8").val();
+          $("#layerpop_val8").text(val);
+        }
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#layerpop_cancel8").click(function(){
+        $("#layerpop_num8").val(1);
+        $("#layerpop_val8").text("6000");
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+  $(function(){
+    $("#bt1").click(function(){
+        $("#bt1").addClass("active");
+        $("#bt2").removeClass("active");
+        $("#bt3").removeClass("active");
+        $("#bt4").removeClass("active");
+    });
+  });
+
+  $(function(){
+    $("#bt2").click(function(){
+      $("#bt1").removeClass("active");
+      $("#bt2").addClass("active");
+      $("#bt3").removeClass("active");
+      $("#bt4").removeClass("active");
+    });
+  });
+
+  $(function(){
+    $("#bt3").click(function(){
+      $("#bt1").removeClass("active");
+      $("#bt2").removeClass("active");
+      $("#bt3").addClass("active");
+      $("#bt4").removeClass("active");
+    });
+  });
+
+  $(function(){
+    $("#bt4").click(function(){
+      $("#bt1").removeClass("active");
+      $("#bt2").removeClass("active");
+      $("#bt3").removeClass("active");
+      $("#bt4").addClass("active");
+    });
+  });
   </script>
 
   <div class="intro-header">
@@ -416,16 +487,24 @@
         <div class="col-lg-12">
           <div class="intro-message">
             <br>
+            <hr>
               <center>
+                <div>
+            			<button id="bt1" class="btn btn-default filter-button active" data-filter="all">All</button>
+            			<button id="bt2" class="btn btn-default filter-button" data-filter="snack">Snack</button>
+            			<button id="bt3" class="btn btn-default filter-button" data-filter="drink">Drink</button>
+            			<button id="bt4" class="btn btn-default filter-button" data-filter="combo">Combo Set</button>
+            	  </div>
+              <hr>
                 <br>
                   <div id="myTabContent" class="tab-content">
                     <div class="row text-center">
-                      <div class="col-md-3 col-sm-6 hero-feature">
+                      <div class="col-md-3 col-sm-6 filter snack">
                           <div class="thumbnail">
-                              <img src="http://placehold.it/800x500" alt="">
+                              <img src="img/popcorn_1.jpg" alt="">
                               <div class="caption">
                                   <h3>팝콘</h3>
-                                  <h4>11000원</h4>
+                                  <h4>판매가 : 4000원</h4>
                                   <p>
                                     <button class="btn btn-default" data-target="#layerpop" data-toggle="modal">구매하기</button><br/>
                                     <div class="modal fade" id="layerpop" >
@@ -440,7 +519,7 @@
                                           <div class="box">
                                             <div class="col-lg-12">
                                               <div style="width:30%; float:left;">
-                                                <img class="img-responsive img-border img-left" src="img/king_small.jpg" alt="">
+                                                <img class="img-responsive img-border img-left" src="img/popcorn_1.jpg" alt="">
                                               </div>
                                               <div style="width:65%; float:right">
                                                 <h2 class="intro-text text-left">팝콘</h2>
@@ -450,7 +529,7 @@
                                                 <h4 class="intro-text text-left">판매수량 : 1회 8개 구매가능</h4>
                                                 <h4 class="intro-text text-left">구매 후 취소: 구매 일로 일주일 이내에만 취소가 가능합니다.</h4>
                                                 <hr></hr>
-                                                <h4 class="intro-text text-left">스토어 판매가 : 11000 원</h4>
+                                                <h4 class="intro-text text-left">스토어 판매가 : 4000 원</h4>
                                                 <div style="margin: 0 auto;">
                                                   <div style="float:left;">
                                                     <h4 class="intro-text text-left">수량 </h4>
@@ -483,7 +562,7 @@
 
                                                  <div style="float:left;">
                                                     <h4 style="margin-left:10px;">
-                                                      <span id=layerpop_val>11000</span>
+                                                      <span id=layerpop_val>4000</span>
                                                     </h4>
                                                 </div>
 
@@ -508,12 +587,12 @@
                               </div>
                           </div>
                       </div>
-                      <div class="col-md-3 col-sm-6 hero-feature">
+                      <div class="col-md-3 col-sm-6 filter snack">
                           <div class="thumbnail">
-                              <img src="http://placehold.it/800x500" alt="">
+                              <img src="img/bagel.jpg" alt="">
                               <div class="caption">
-                                  <h3>팝콘</h3>
-                                  <h4>11000원</h4>
+                                  <h3>베이글</h3>
+                                  <h4>판매가 : 3000원</h4>
                                   <p>
                                     <button class="btn btn-default" data-target="#layerpop1" data-toggle="modal">구매하기</button><br/>
                                     <div class="modal fade" id="layerpop1" >
@@ -528,17 +607,17 @@
                                           <div class="box">
                                             <div class="col-lg-12">
                                               <div style="width:30%; float:left;">
-                                                <img class="img-responsive img-border img-left" src="img/king_small.jpg" alt="">
+                                                <img class="img-responsive img-border img-left" src="img/bagel.jpg" alt="">
                                               </div>
                                               <div style="width:65%; float:right">
-                                                <h2 class="intro-text text-left">팝콘</h2>
+                                                <h2 class="intro-text text-left">베이글</h2>
                                                 <hr></hr>
                                                 <h4 class="intro-text text-left">사용가능 영화관 : 전체영화관</h4>
                                                 <h4 class="intro-text text-left">유효기간 : 유효기간은 구매일로부터 2년입니다.(일자기준)</h4>
                                                 <h4 class="intro-text text-left">판매수량 : 1회 8개 구매가능</h4>
                                                 <h4 class="intro-text text-left">구매 후 취소: 구매 일로 일주일 이내에만 취소가 가능합니다.</h4>
                                                 <hr></hr>
-                                                <h4 class="intro-text text-left">스토어 판매가 : 11000 원</h4>
+                                                <h4 class="intro-text text-left">스토어 판매가 : 3000 원</h4>
                                                 <div style="margin: 0 auto;">
                                                   <div style="float:left;">
                                                     <h4 class="intro-text text-left">수량 </h4>
@@ -571,7 +650,7 @@
 
                                                  <div style="float:left;">
                                                     <h4 style="margin-left:10px;">
-                                                      <span id=layerpop_val1>11000</span>
+                                                      <span id=layerpop_val1>3000</span>
                                                     </h4>
                                                 </div>
 
@@ -596,12 +675,12 @@
                               </div>
                           </div>
                       </div>
-                      <div class="col-md-3 col-sm-6 hero-feature">
+                      <div class="col-md-3 col-sm-6 filter snack">
                           <div class="thumbnail">
-                              <img src="http://placehold.it/800x500" alt="">
+                              <img src="img/nuggets.jpg" alt="">
                               <div class="caption">
-                                  <h3>팝콘</h3>
-                                  <h4>11000원</h4>
+                                  <h3>너겟</h3>
+                                  <h4>판매가 : 3000원</h4>
                                   <p>
                                     <button class="btn btn-default" data-target="#layerpop2" data-toggle="modal">구매하기</button><br/>
                                     <div class="modal fade" id="layerpop2" >
@@ -616,17 +695,17 @@
                                           <div class="box">
                                             <div class="col-lg-12">
                                               <div style="width:30%; float:left;">
-                                                <img class="img-responsive img-border img-left" src="img/king_small.jpg" alt="">
+                                                <img class="img-responsive img-border img-left" src="img/nuggets.jpg" alt="">
                                               </div>
                                               <div style="width:65%; float:right">
-                                                <h2 class="intro-text text-left">팝콘</h2>
+                                                <h2 class="intro-text text-left">너겟</h2>
                                                 <hr></hr>
                                                 <h4 class="intro-text text-left">사용가능 영화관 : 전체영화관</h4>
                                                 <h4 class="intro-text text-left">유효기간 : 유효기간은 구매일로부터 2년입니다.(일자기준)</h4>
                                                 <h4 class="intro-text text-left">판매수량 : 1회 8개 구매가능</h4>
                                                 <h4 class="intro-text text-left">구매 후 취소: 구매 일로 일주일 이내에만 취소가 가능합니다.</h4>
                                                 <hr></hr>
-                                                <h4 class="intro-text text-left">스토어 판매가 : 11000 원</h4>
+                                                <h4 class="intro-text text-left">스토어 판매가 : 3000 원</h4>
                                                 <div style="margin: 0 auto;">
                                                   <div style="float:left;">
                                                     <h4 class="intro-text text-left">수량 </h4>
@@ -659,7 +738,7 @@
 
                                                  <div style="float:left;">
                                                     <h4 style="margin-left:10px;">
-                                                      <span id=layerpop_val2>11000</span>
+                                                      <span id=layerpop_val2>3000</span>
                                                     </h4>
                                                 </div>
 
@@ -684,12 +763,12 @@
                               </div>
                           </div>
                       </div>
-                      <div class="col-md-3 col-sm-6 hero-feature">
+                      <div class="col-md-3 col-sm-6 filter snack">
                           <div class="thumbnail">
-                              <img src="http://placehold.it/800x500" alt="">
+                              <img src="img/sandwiches.jpg" alt="">
                               <div class="caption">
-                                  <h3>팝콘</h3>
-                                  <h4>11000원</h4>
+                                  <h3>샌드위치</h3>
+                                  <h4>판매가 : 3000원</h4>
                                   <p>
                                     <button class="btn btn-default" data-target="#layerpop3" data-toggle="modal">구매하기</button><br/>
                                     <div class="modal fade" id="layerpop3" >
@@ -704,17 +783,17 @@
                                           <div class="box">
                                             <div class="col-lg-12">
                                               <div style="width:30%; float:left;">
-                                                <img class="img-responsive img-border img-left" src="img/king_small.jpg" alt="">
+                                                <img class="img-responsive img-border img-left" src="img/sandwiches.jpg" alt="">
                                               </div>
                                               <div style="width:65%; float:right">
-                                                <h2 class="intro-text text-left">팝콘</h2>
+                                                <h2 class="intro-text text-left">샌드위치</h2>
                                                 <hr></hr>
                                                 <h4 class="intro-text text-left">사용가능 영화관 : 전체영화관</h4>
                                                 <h4 class="intro-text text-left">유효기간 : 유효기간은 구매일로부터 2년입니다.(일자기준)</h4>
                                                 <h4 class="intro-text text-left">판매수량 : 1회 8개 구매가능</h4>
                                                 <h4 class="intro-text text-left">구매 후 취소: 구매 일로 일주일 이내에만 취소가 가능합니다.</h4>
                                                 <hr></hr>
-                                                <h4 class="intro-text text-left">스토어 판매가 : 11000 원</h4>
+                                                <h4 class="intro-text text-left">스토어 판매가 : 3000 원</h4>
                                                 <div style="margin: 0 auto;">
                                                   <div style="float:left;">
                                                     <h4 class="intro-text text-left">수량 </h4>
@@ -747,7 +826,7 @@
 
                                                  <div style="float:left;">
                                                     <h4 style="margin-left:10px;">
-                                                      <span id=layerpop_val3>11000</span>
+                                                      <span id=layerpop_val3>3000</span>
                                                     </h4>
                                                 </div>
 
@@ -774,17 +853,15 @@
                       </div>
                 </br>
               </center>
-            </br>
-            <br>
               <center>
                   <div id="myTabContent" class="tab-content">
                     <div class="row text-center">
-                      <div class="col-md-3 col-sm-6 hero-feature">
+                      <div class="col-md-3 col-sm-6 filter snack">
                           <div class="thumbnail">
-                              <img src="http://placehold.it/800x500" alt="">
+                              <img src="img/nacho.jpg" alt="">
                               <div class="caption">
-                                  <h3>팝콘</h3>
-                                  <h4>11000원</h4>
+                                  <h3>나초</h3>
+                                  <h4>판매가 : 3000원</h4>
                                   <p>
                                     <button class="btn btn-default" data-target="#layerpop4" data-toggle="modal">구매하기</button><br/>
                                     <div class="modal fade" id="layerpop4" >
@@ -799,17 +876,17 @@
                                           <div class="box">
                                             <div class="col-lg-12">
                                               <div style="width:30%; float:left;">
-                                                <img class="img-responsive img-border img-left" src="img/king_small.jpg" alt="">
+                                                <img class="img-responsive img-border img-left" src="img/nacho.jpg" alt="">
                                               </div>
                                               <div style="width:65%; float:right">
-                                                <h2 class="intro-text text-left">팝콘</h2>
+                                                <h2 class="intro-text text-left">나초</h2>
                                                 <hr></hr>
                                                 <h4 class="intro-text text-left">사용가능 영화관 : 전체영화관</h4>
                                                 <h4 class="intro-text text-left">유효기간 : 유효기간은 구매일로부터 2년입니다.(일자기준)</h4>
                                                 <h4 class="intro-text text-left">판매수량 : 1회 8개 구매가능</h4>
                                                 <h4 class="intro-text text-left">구매 후 취소: 구매 일로 일주일 이내에만 취소가 가능합니다.</h4>
                                                 <hr></hr>
-                                                <h4 class="intro-text text-left">스토어 판매가 : 11000 원</h4>
+                                                <h4 class="intro-text text-left">스토어 판매가 : 3000 원</h4>
                                                 <div style="margin: 0 auto;">
                                                   <div style="float:left;">
                                                     <h4 class="intro-text text-left">수량 </h4>
@@ -842,7 +919,7 @@
 
                                                  <div style="float:left;">
                                                     <h4 style="margin-left:10px;">
-                                                      <span id=layerpop_val4>11000</span>
+                                                      <span id=layerpop_val4>3000</span>
                                                     </h4>
                                                 </div>
 
@@ -867,12 +944,12 @@
                               </div>
                           </div>
                       </div>
-                      <div class="col-md-3 col-sm-6 hero-feature">
+                      <div class="col-md-3 col-sm-6 filter drink">
                           <div class="thumbnail">
-                              <img src="http://placehold.it/800x500" alt="">
+                              <img src="img/coke.jpg" alt="">
                               <div class="caption">
-                                  <h3>팝콘</h3>
-                                  <h4>11000원</h4>
+                                  <h3>콜라</h3>
+                                  <h4>판매가 : 2500원</h4>
                                   <p>
                                     <button class="btn btn-default" data-target="#layerpop5" data-toggle="modal">구매하기</button><br/>
                                     <div class="modal fade" id="layerpop5" >
@@ -887,17 +964,17 @@
                                           <div class="box">
                                             <div class="col-lg-12">
                                               <div style="width:30%; float:left;">
-                                                <img class="img-responsive img-border img-left" src="img/king_small.jpg" alt="">
+                                                <img class="img-responsive img-border img-left" src="img/coke.jpg" alt="">
                                               </div>
                                               <div style="width:65%; float:right">
-                                                <h2 class="intro-text text-left">팝콘</h2>
+                                                <h2 class="intro-text text-left">콜라</h2>
                                                 <hr></hr>
                                                 <h4 class="intro-text text-left">사용가능 영화관 : 전체영화관</h4>
                                                 <h4 class="intro-text text-left">유효기간 : 유효기간은 구매일로부터 2년입니다.(일자기준)</h4>
                                                 <h4 class="intro-text text-left">판매수량 : 1회 8개 구매가능</h4>
                                                 <h4 class="intro-text text-left">구매 후 취소: 구매 일로 일주일 이내에만 취소가 가능합니다.</h4>
                                                 <hr></hr>
-                                                <h4 class="intro-text text-left">스토어 판매가 : 11000 원</h4>
+                                                <h4 class="intro-text text-left">스토어 판매가 : 2500 원</h4>
                                                 <div style="margin: 0 auto;">
                                                   <div style="float:left;">
                                                     <h4 class="intro-text text-left">수량 </h4>
@@ -930,7 +1007,7 @@
 
                                                  <div style="float:left;">
                                                     <h4 style="margin-left:10px;">
-                                                      <span id=layerpop_val5>11000</span>
+                                                      <span id=layerpop_val5>2500</span>
                                                     </h4>
                                                 </div>
 
@@ -955,12 +1032,12 @@
                               </div>
                           </div>
                       </div>
-                      <div class="col-md-3 col-sm-6 hero-feature">
+                      <div class="col-md-3 col-sm-6 filter drink">
                           <div class="thumbnail">
-                              <img src="http://placehold.it/800x500" alt="">
+                              <img src="img/americano.jpg" alt="">
                               <div class="caption">
-                                  <h3>팝콘</h3>
-                                  <h4>11000원</h4>
+                                  <h3>아메리카노</h3>
+                                  <h4>판매가 : 2500원</h4>
                                   <p>
                                     <button class="btn btn-default" data-target="#layerpop6" data-toggle="modal">구매하기</button><br/>
                                     <div class="modal fade" id="layerpop6" >
@@ -975,17 +1052,17 @@
                                           <div class="box">
                                             <div class="col-lg-12">
                                               <div style="width:30%; float:left;">
-                                                <img class="img-responsive img-border img-left" src="img/king_small.jpg" alt="">
+                                                <img class="img-responsive img-border img-left" src="img/americano.jpg" alt="">
                                               </div>
                                               <div style="width:65%; float:right">
-                                                <h2 class="intro-text text-left">팝콘</h2>
+                                                <h2 class="intro-text text-left">아메리카노</h2>
                                                 <hr></hr>
                                                 <h4 class="intro-text text-left">사용가능 영화관 : 전체영화관</h4>
                                                 <h4 class="intro-text text-left">유효기간 : 유효기간은 구매일로부터 2년입니다.(일자기준)</h4>
                                                 <h4 class="intro-text text-left">판매수량 : 1회 8개 구매가능</h4>
                                                 <h4 class="intro-text text-left">구매 후 취소: 구매 일로 일주일 이내에만 취소가 가능합니다.</h4>
                                                 <hr></hr>
-                                                <h4 class="intro-text text-left">스토어 판매가 : 11000 원</h4>
+                                                <h4 class="intro-text text-left">스토어 판매가 : 2500 원</h4>
                                                 <div style="margin: 0 auto;">
                                                   <div style="float:left;">
                                                     <h4 class="intro-text text-left">수량 </h4>
@@ -1018,7 +1095,7 @@
 
                                                  <div style="float:left;">
                                                     <h4 style="margin-left:10px;">
-                                                      <span id=layerpop_val6>11000</span>
+                                                      <span id=layerpop_val6>2500</span>
                                                     </h4>
                                                 </div>
 
@@ -1043,12 +1120,12 @@
                               </div>
                           </div>
                       </div>
-                      <div class="col-md-3 col-sm-6 hero-feature">
+                      <div class="col-md-3 col-sm-6 filter drink">
                           <div class="thumbnail">
-                              <img src="http://placehold.it/800x500" alt="">
+                              <img src="img/lemonade.jpg" alt="">
                               <div class="caption">
-                                  <h3>팝콘</h3>
-                                  <h4>11000원</h4>
+                                  <h3>레몬에이드</h3>
+                                  <h4>판매가 : 2500원</h4>
                                   <p>
                                     <button class="btn btn-default" data-target="#layerpop7" data-toggle="modal">구매하기</button><br/>
                                     <div class="modal fade" id="layerpop7" >
@@ -1063,17 +1140,17 @@
                                           <div class="box">
                                             <div class="col-lg-12">
                                               <div style="width:30%; float:left;">
-                                                <img class="img-responsive img-border img-left" src="img/king_small.jpg" alt="">
+                                                <img class="img-responsive img-border img-left" src="img/lemonade.jpg" alt="">
                                               </div>
                                               <div style="width:65%; float:right">
-                                                <h2 class="intro-text text-left">팝콘</h2>
+                                                <h2 class="intro-text text-left">레몬에이드</h2>
                                                 <hr></hr>
                                                 <h4 class="intro-text text-left">사용가능 영화관 : 전체영화관</h4>
                                                 <h4 class="intro-text text-left">유효기간 : 유효기간은 구매일로부터 2년입니다.(일자기준)</h4>
                                                 <h4 class="intro-text text-left">판매수량 : 1회 8개 구매가능</h4>
                                                 <h4 class="intro-text text-left">구매 후 취소: 구매 일로 일주일 이내에만 취소가 가능합니다.</h4>
                                                 <hr></hr>
-                                                <h4 class="intro-text text-left">스토어 판매가 : 11000 원</h4>
+                                                <h4 class="intro-text text-left">스토어 판매가 : 2500 원</h4>
                                                 <div style="margin: 0 auto;">
                                                   <div style="float:left;">
                                                     <h4 class="intro-text text-left">수량 </h4>
@@ -1106,7 +1183,7 @@
 
                                                  <div style="float:left;">
                                                     <h4 style="margin-left:10px;">
-                                                      <span id=layerpop_val7>11000</span>
+                                                      <span id=layerpop_val7>2500</span>
                                                     </h4>
                                                 </div>
 
@@ -1131,6 +1208,94 @@
                               </div>
                           </div>
                       </div>
+                      <div class="col-md-3 col-sm-6 filter combo">
+                          <div class="thumbnail">
+                              <img src="img/combo1.jpg" alt="">
+                              <div class="caption">
+                                  <h4>콤보세트(팝콘1+콜라1)</h4>
+                                  <h4>판매가 : 6000원</h4>
+                                  <p>
+                                    <button class="btn btn-default" data-target="#layerpop8" data-toggle="modal">구매하기</button><br/>
+                                    <div class="modal fade" id="layerpop8" >
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          <!-- header -->
+                                          <div class="modal-header">
+                                            <!-- header title -->
+                                            <h3 class="modal-title">상품구매</h3>
+                                          </div>
+                                          <!-- body -->
+                                          <div class="box">
+                                            <div class="col-lg-12">
+                                              <div style="width:30%; float:left;">
+                                                <img class="img-responsive img-border img-left" src="img/lemonade.jpg" alt="">
+                                              </div>
+                                              <div style="width:65%; float:right">
+                                                <h2 class="intro-text text-left">콤보세트(팝콘1+콜라1)</h2>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">사용가능 영화관 : 전체영화관</h4>
+                                                <h4 class="intro-text text-left">유효기간 : 유효기간은 구매일로부터 2년입니다.(일자기준)</h4>
+                                                <h4 class="intro-text text-left">판매수량 : 1회 8개 구매가능</h4>
+                                                <h4 class="intro-text text-left">구매 후 취소: 구매 일로 일주일 이내에만 취소가 가능합니다.</h4>
+                                                <hr></hr>
+                                                <h4 class="intro-text text-left">스토어 판매가 : 6000 원</h4>
+                                                <div style="margin: 0 auto;">
+                                                  <div style="float:left;">
+                                                    <h4 class="intro-text text-left">수량 </h4>
+                                                  </div>
+
+                                                  <div style="float:left;">
+                                                    <div style="width:140px;">
+                                                      <div class="input-group" style="margin-left:20px;">
+                                                         <span class="input-group-btn">
+                                                             <button id="minus8" type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-minus"></span>
+                                                             </button>
+                                                         </span>
+                                                         <input id="layerpop_num8" type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="8">
+                                                         <span class="input-group-btn">
+                                                             <button id="plus8" type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                                                                 <span class="glyphicon glyphicon-plus"></span>
+                                                             </button>
+                                                         </span>
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                               </div>
+                                               <div style="clear:left;"></div>
+                                               <hr></hr>
+                                               <div style="margin: 0 auto;">
+                                                 <div style="float:left;">
+                                                   <h4 class="intro-text text-left">총 판매가 : </h4>
+                                                 </div>
+
+                                                 <div style="float:left;">
+                                                    <h4 style="margin-left:10px;">
+                                                      <span id=layerpop_val8>6000</span>
+                                                    </h4>
+                                                </div>
+
+                                                <div style="float:left;">
+                                                 <h4 style="margin-left:10px;" class="intro-text text-left">원</h4>
+                                               </div>
+                                              </div>
+                                              <div style="clear:left;"></div>
+                                              <hr class="visible-xs">
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <!-- Footer -->
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">구매</button>
+                                            <button id="layerpop_cancel8" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
               </center>
             </br>
           </div>
@@ -1139,6 +1304,27 @@
     </div>
   </div>
   <!-- Page Features -->
+
+<script>
+$(document).ready(function(){
+
+    $(".filter-button").click(function(){
+        var value = $(this).attr('data-filter');
+        if(value == "all")
+        {
+            //$('.filter').removeClass('hidden');
+            $('.filter').show('1000');
+        }
+        else
+        {
+//            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
+//            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
+            $(".filter").not('.'+value).hide('3000');
+            $('.filter').filter('.'+value).show('3000');
+        }
+    });
+});
+</script>
 
 </body>
 </html>
