@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link href="css/half-slider.css" rel="stylesheet">
   <link href="css/star.css" rel="stylesheet">
-
+  <link href="css/style.css" rel="stylesheet">
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/angular.min.js"></script>
@@ -221,23 +221,26 @@
   });
 
   </script>
-  <br>
-  <br>
-  <br>
-  <div style="width:100%;">
-    <div style="margin:40px;">
-      <h2>마이 페이지</h2>
-      <h4>My Page</h4>
-      <hr style="border:solid 3px black;"></hr>
-    </div>
-  </div>
+  <header id="myCarousel" class="carousel">
+    <div class="carousel-inner">
+      <div class="item active">
+        <div class="fill" style="background-image:url('img/mypage.jpg');">
+        </div>
+        <div class="carousel-caption" style="text-align:left">
+          <h2>마이페이지</h2>
+          <h4>MyPage</h4>
+        </div>
+      </div>
+  </header>
+  <div class="container">
+
   <div style="margin:40px;">
     <div style="float:left;">
-      <button id="myinform" href="#inform" class="btn btn-primary active" style="padding:20px">회원 정보</button>
-      <button id="passwd" href="#passwdchange" class="btn btn-primary" style="padding:20px">비밀번호 변경</button>
-      <button id="revise" href="#reviseform" class="btn btn-primary" style="padding:20px">정보 수정</button>
-      <button id="store" href="#storeform" class="btn btn-primary" style="padding:20px">구매 목록</button>
-      <button id="basket" href="#basketform" class="btn btn-primary" style="padding:20px">장바구니</button>
+      <button id="myinform" href="#inform" class="btn btn-default active" style="padding:15px">회원 정보</button>
+      <button id="passwd" href="#passwdchange" class="btn btn-default" style="padding:15px">비밀번호 변경</button>
+      <button id="revise" href="#reviseform" class="btn btn-default" style="padding:15px">정보 수정</button>
+      <button id="store" href="#storeform" class="btn btn-default" style="padding:15px">구매 목록</button>
+      <button id="basket" href="#basketform" class="btn btn-default" style="padding:15px">장바구니</button>
     </div>
   </div>
   <div style="clear:left;"></div>
@@ -424,9 +427,9 @@
         <h2>구매 목록</h2>
         <br>
         <tr>
-          <th>날짜</th>
-          <th>상품</th>
-          <th>수량</th>
+          <th style="text-align:center">날짜</th>
+          <th style="text-align:center">상품</th>
+          <th style="text-align:center">수량</th>
         </tr>
       </thead>
       <tbody>
@@ -456,9 +459,9 @@
         <h2>장바구니</h2>
         <br>
         <tr>
-          <th>상품</th>
-          <th>가격</th>
-          <th>수량</th>
+          <th style="text-align:center">상품</th>
+          <th style="text-align:center">가격</th>
+          <th style="text-align:center">수량</th>
         </tr>
       </thead>
       <tbody>
@@ -477,7 +480,10 @@
       %>
       </tbody>
     </table>
+    <span style="float:right"><button type="submit" class="btn btn-default" style="padding:10px">구입</button></span>
   </div>
+
+</div>
   <!-- Page Features -->
 
 </body>

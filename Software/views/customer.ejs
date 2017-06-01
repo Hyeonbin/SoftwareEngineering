@@ -160,22 +160,24 @@
       });
     });
     </script>
-  <br>
-  <br>
-  <br>
+    <header id="myCarousel" class="carousel">
+      <div class="carousel-inner">
+        <div class="item active">
+          <div class="fill" style="background-image:url('img/customer_main.jpg');">
+          </div>
+          <div class="carousel-caption" style="text-align:left">
+            <h2>고객센터</h2>
+            <h4>Customer Center</h4>
+          </div>
+        </div>
+    </header>
   <div class="container">
-  <div style="width:100%;">
-    <div style="margin:40px;">
-      <h2>고객센터</h2>
-      <h4>Customer Center</h4>
-      <hr class="colorgraph"></hr>
-    </div>
-  </div>
+
   <h2 style="background-color:grey; margin:40px; padding:20px"><font color="white">MaxMovie 고객센터 Dream Center / 1234-5678</font></h2>
   <div style="margin:40px;">
     <div style="float:left;">
-      <button id="notice" href="#noticetable" class="btn btn-primary active" style="padding:20px">공지사항</button>
-      <button id="onetoone" href="#onetooneform" class="btn btn-primary" style="padding:20px">1:1 문의</button>
+      <button id="notice" href="#noticetable" class="btn btn-default active" style="padding:20px">공지사항</button>
+      <button id="onetoone" href="#onetooneform" class="btn btn-default" style="padding:20px">1:1 문의</button>
     </div>
   </div>
   <div style="clear:left;"></div>
@@ -237,11 +239,11 @@
           </tr>
           <tr>
             <th>내용</th>
-            <td><textarea cols="10" placeholder="내용을 입력하세요" name="content" class="form-control"/></textarea></td>
+            <td><textarea style="resize:none; height:200px" placeholder="내용을 입력하세요" name="content" class="form-control"/></textarea></td>
           </tr>
           <tr>
             <td colspan="2">
-              <button type="submit" class="btn btn-primary" style="padding:10px">제출</button>
+              <button type="submit" class="btn btn-default" style="padding:10px">제출</button>
             </td>
           </tr>
         </form>
