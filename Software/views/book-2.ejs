@@ -8,9 +8,39 @@
   <link href="css/star.css" rel="stylesheet">
   <link href="css/theme.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/dncalendar-skin.min.css">
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/dncalendar.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		var my_calendar = $("#dncalendar-container").dnCalendar({
+			minDate: "2017-06-02",
+			maxDate: "2017-07-31",
+			defaultDate: "2017-06-02",
+			monthNames: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
+			monthNamesShort: [ 'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des' ],
+			dayNames: [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+              dayNamesShort: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ],
+              dataTitles: { defaultDate : ' ',	today : ' '},
+              notes: [],
+              showNotes: false,
+              startWeek: 'sunday',
+              dayClick: function(date, view) {
+              	alert(date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear());
+              }
+		});
+			// init calendar
+		my_calendar.build();
+			// update calendar
+		// my_calendar.update({
+		// 	minDate: "2016-01-05",
+		// 	defaultDate: "2016-05-04"
+		// });
+	});
+	</script>
   <style>
         .line {
             overflow: hidden;
@@ -192,38 +222,12 @@
         </ol>
   </div>
 
-  <script>
-    $(function() {
-      $( "#testDatepicker" ).datepicker({
-        changeMonth: true,
-        changeYear: true,
-        dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
-        dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
-        monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
-        monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        numberOfMonths: [3,4]
-      });
-    });
-  </script>
-
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-
   <div class="container">
-    <h3>날짜를 선택하세요</h3><br>
-    <input type="text" id="testDatepicker" placeholder="Click" style="height:40px; font-size:20px">
-    <br><br>
-  </div>
-
-  <div class="container">
-    <div class="tab-content">
-      <div class="tab-pane active" id="theaterselect">
-
-      </div> <!-- tab pane - 2!-->
-
+    <div id="dncalendar-container">
     </div>
   </div>
+
+  <hr><hr><hr><hr>
 
 
 </body>

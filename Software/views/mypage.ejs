@@ -149,6 +149,7 @@
         $("#passwdchange").hide();
         $("#reviseform").hide();
         $("#storeform").hide();
+        $("#basketform").hide();
     });
   });
   </script>
@@ -160,10 +161,12 @@
         $("#passwd").removeClass("active");
         $("#myinform").removeClass("active");
         $("#revise").removeClass("active");
+        $("#basket").removeClass("active");
         $("#storeform").show();
         $("#passwdchange").hide();
         $("#inform").hide();
         $("#reviseform").hide();
+        $("#basketform").hide();
     });
   });
   </script>
@@ -175,10 +178,12 @@
         $("#store").removeClass("active");
         $("#myinform").removeClass("active");
         $("#passwd").removeClass("active");
+        $("#basket").removeClass("active");
         $("#inform").hide();
         $("#reviseform").show();
         $("#passwdchange").hide();
         $("#storeform").hide();
+        $("#basketform").hide();
     });
   });
   </script>
@@ -190,10 +195,28 @@
         $("#myinform").removeClass("active");
         $("#passwd").addClass("active");
         $("#store").removeClass("active");
+        $("#basket").removeClass("active");
         $("#inform").hide();
         $("#reviseform").hide();
         $("#passwdchange").show();
         $("#storeform").hide();
+        $("#basketform").hide();
+    });
+  });
+  </script>
+  <script type="text/javascript">
+  $(function(){
+    $("#basket").click(function(){
+        $("#basket").addClass("active");
+        $("#revise").removeClass("active");
+        $("#myinform").removeClass("active");
+        $("#passwd").removeClass("active");
+        $("#store").removeClass("active");
+        $("#inform").hide();
+        $("#reviseform").hide();
+        $("#passwdchange").hide();
+        $("#storeform").hide();
+        $("#basketform").show();
     });
   });
 
@@ -214,6 +237,7 @@
       <button id="passwd" href="#passwdchange" class="btn btn-primary" style="padding:20px">비밀번호 변경</button>
       <button id="revise" href="#reviseform" class="btn btn-primary" style="padding:20px">정보 수정</button>
       <button id="store" href="#storeform" class="btn btn-primary" style="padding:20px">구매 목록</button>
+      <button id="basket" href="#basketform" class="btn btn-primary" style="padding:20px">장바구니</button>
     </div>
   </div>
   <div style="clear:left;"></div>
@@ -297,13 +321,13 @@
                                   </div>
 
                                   <div class="form-group">
-<<<<<<< Updated upstream
-                                      <button name="button" value="withdrawal" type="submit" class="btn btn-default btn-block m-t-md" value="Login"><strong>회원 탈퇴</strong></button>                             
-                                  </div>    
-=======
+
+                                      <button name="button" value="withdrawal" type="submit" class="btn btn-default btn-block m-t-md" value="Login"><strong>회원 탈퇴</strong></button>
+                                  </div>
+
                                       <button type="submit" class="btn btn-default btn-block m-t-md" value="Login"><strong>회원 탈퇴</strong></button>
                                   </div>
->>>>>>> Stashed changes
+
                               </form>
                             </div>
                           </div>
@@ -421,6 +445,36 @@
           <td>오징어콤보</td>
           <td>1</td>
         </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="container" id="basketform" style="margin: 0 auto; display:none">
+    <br>
+    <table class="table table-striped">
+      <thead>
+        <h2>장바구니</h2>
+        <br>
+        <tr>
+          <th>상품</th>
+          <th>가격</th>
+          <th>수량</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%
+          for(var i=0; i<basket.length; i++)
+          {
+            var oneItem = basket[i];
+      %>
+        <tr>
+          <td><%=oneItem.name%></td>
+          <td><%=oneItem.price%></td>
+          <td><%=oneItem.amount%></td>
+        </tr>
+      <%
+          }
+      %>
       </tbody>
     </table>
   </div>

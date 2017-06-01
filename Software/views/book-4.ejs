@@ -15,23 +15,19 @@
         .line {
             overflow: hidden;
         }
-
         .seat {
             margin: 2px;
             float: left;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             border-radius: 3px;
         }
-
         .enable {
             background: gray;
         }
-
         .enable:hover {
             background: black;
         }
-
         .disable {
             background: red;
         }
@@ -1135,6 +1131,7 @@
           });
     </script>
 
+
 </head>
 
 <body>
@@ -1290,23 +1287,207 @@
         </ol>
   </div>
 
-  <div class="container" >
-        <hr class="colorgraph">
+  <!-- !-->
+   <script type="text/javascript">
+      var adult = 0;
+      var child = 0;
+      var total = 0;
+      $(function(){
+       $("#adult0").change(function(){
+         $("#adult_num").text(0);
+         $("#adult_price").text(0);
+         adult = 0;
+         total = adult + child;
+         $("#total_value").text(total);
+       });
+       $("#adult1").change(function(){
+         $("#adult_num").text(1);
+         $("#adult_price").text(10000);
+         adult = 10000;
+         total = adult + child;
+         $("#total_value").text(total);
+       });
+       $("#adult2").change(function(){
+         $("#adult_num").text(2);
+         $("#adult_price").text(20000);
+         adult = 20000;
+         total = adult + child;
+         $("#total_value").text(total);
+       });
+       $("#adult3").change(function(){
+         $("#adult_num").text(3);
+         $("#adult_price").text(30000);
+         adult = 30000;
+         total = adult + child;
+         $("#total_value").text(total);
+       });
+       $("#adult4").change(function(){
+         $("#adult_num").text(4);
+         $("#adult_price").text(40000);
+         adult = 40000;
+         total = adult + child;
+         $("#total_value").text(total);
+       });
+       $("#adult5").change(function(){
+         $("#adult_num").text(5);
+         $("#adult_price").text(50000);
+         adult = 50000;
+         total = adult + child;
+         $("#total_value").text(total);
+       });
+       $("#adult6").change(function(){
+         $("#adult_num").text(6);
+         $("#adult_price").text(60000);
+         adult = 60000;
+         total = adult + child;
+         $("#total_value").text(total);
+       });
+       $("#kid0").change(function(){
+         $("#kid_num").text(0);
+         $("#kid_price").text(0);
+         child = 0;
+         total = adult + child;
+         $("#total_value").text(total);
+       });
+       $("#kid1").change(function(){
+         $("#kid_num").text(1);
+         $("#kid_price").text(8000);
+         child = 8000;
+         total = adult + child;
+         $("#total_value").text(total);
+       });
+       $("#kid2").change(function(){
+         $("#kid_num").text(2);
+         $("#kid_price").text(16000);
+         child = 16000;
+         total = adult + child;
+         $("#total_value").text(total);
+       });
+       $("#kid3").change(function(){
+         $("#kid_num").text(3);
+         $("#kid_price").text(24000);
+         child = 24000;
+         total = adult + child;
+         $("#total_value").text(total);
+       });
+       $("#kid4").change(function(){
+         $("#kid_num").text(4);
+         $("#kid_price").text(32000);
+         child = 32000;
+         total = adult + child;
+         $("#total_value").text(total);
+       });
+       $("#kid5").change(function(){
+         $("#kid_num").text(5);
+         $("#kid_price").text(40000);
+         child = 40000;
+         total = adult + child;
+         $("#total_value").text(total);
+       });
+       $("#kid6").change(function(){
+         $("#kid_num").text(6);
+         $("#kid_price").text(48000);
+         child = 48000;
+         total = adult + child;
+         $("#total_value").text(total);
+       });
+     });
+   </script>
+   <!-- !-->
 
+  <div class="container">
+    <hr class="colorgraph">
+      <div class="btn-row" style="text-align:left" id="adult_bt">
+        <strong>성&nbsp;인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
         <div class="btn-group" data-toggle="buttons">
           <label class="btn btn-default active">
-            <input type="radio" name="options" id="option1"> Option 1
+            <input type="radio" name="options" id="adult0"> 0
           </label>
           <label class="btn btn-default">
-            <input type="radio" name="options" id="option2"> Option 2
+            <input type="radio" name="options" id="adult1"> 1
           </label>
           <label class="btn btn-default">
-            <input type="radio" name="options" id="option3"> Option 3
+            <input type="radio" name="options" id="adult2"> 2
+          </label>
+          <label class="btn btn-default">
+            <input type="radio" name="options" id="adult3"> 3
+          </label>
+          <label class="btn btn-default">
+            <input type="radio" name="options" id="adult4"> 4
+          </label>
+          <label class="btn btn-default">
+            <input type="radio" name="options" id="adult5"> 5
+          </label>
+          <label class="btn btn-default">
+            <input type="radio" name="options" id="adult6"> 6
           </label>
         </div>
-        
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><span id="adult_num">0</span></strong>
+        <strong> 명 : </strong>
+        <strong><span id="adult_price" value="0">0</span><strong>
+        <strong> 원 </strong></span>
+      </div>
+      <div class="btn-row">&nbsp;</div>
+
+      <div class="btn-row" style="text-align:left" id="kid_bt">
+        <strong>청소년&nbsp;&nbsp;</strong>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default active">
+            <input type="radio" name="options" id="kid0"> 0
+          </label>
+          <label class="btn btn-default">
+            <input type="radio" name="options" id="kid1"> 1
+          </label>
+          <label class="btn btn-default">
+            <input type="radio" name="options" id="kid2"> 2
+          </label>
+          <label class="btn btn-default">
+            <input type="radio" name="options" id="kid3"> 3
+          </label>
+          <label class="btn btn-default">
+            <input type="radio" name="options" id="kid4"> 4
+          </label>
+          <label class="btn btn-default">
+            <input type="radio" name="options" id="kid5"> 5
+          </label>
+          <label class="btn btn-default">
+            <input type="radio" name="options" id="kid6"> 6
+          </label>
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><span id="kid_num">0</span></strong>
+        <strong> 명 : </strong>
+        <strong><span id="kid_price" value="0">0</span></strong>
+        <strong> 원 </strong></span>
+        <h4 style="text-align:right">총 결제 금액 :
+          <span id="total_value" value="0">0</span>
+          원
+        &nbsp;&nbsp;&nbsp;
+        <span style="float:right">
+        <button type="button" class="btn btn-labeled btn-success">
+          선택 완료
+        </button>
+        </span>
+        </h4>
+      </div>
+
         <hr class="colorgraph">
+        <style>
+        .myjumbotron {
+          padding-top: 20px;
+          padding-bottom: 20px;
+          margin-bottom: 20px;
+          margin-left: 180px;
+          margin-right: 180px;
+          color: inherit;
+          background-color: #eee;
+        }
+        </style>
+
+        <div class="myjumbotron">
+          <h4>screen</h4>
+        </div>
         <div class="" style="display:inline-block;">
+          <div class="seat"><br><strong>A&nbsp;&nbsp;</strong></div>
           <div id="0" name="0" class="seat" data-x="0" data-y="0" value="<%=seat[0].seat[0]%>">
           </div>
           <div id="1" class="seat" data-x="1" data-y="0" value="<%=seat[0].seat[1]%>">
@@ -1338,6 +1519,7 @@
         </div><br>
 
         <div class="" style="display:inline-block;">
+          <div class="seat"><br><strong>B&nbsp;&nbsp;</strong></div>
           <div id="14" class="seat" data-x="0" data-y="1"  value="<%=seat[0].seat[14]%>">
           </div>
           <div id="15" class="seat" data-x="1" data-y="1" value="<%=seat[0].seat[15]%>">
@@ -1369,6 +1551,7 @@
         </div><br>
 
         <div class="" style="display:inline-block;">
+          <div class="seat"><br><strong>C&nbsp;&nbsp;</strong></div>
           <div id="28" class="seat" data-x="0" data-y="2" value="<%=seat[0].seat[28]%>">
           </div>
           <div id="29" class="seat" data-x="1" data-y="2" value="<%=seat[0].seat[29]%>">
@@ -1400,6 +1583,7 @@
         </div><br>
 
         <div class="" style="display:inline-block;">
+          <div class="seat"><br><strong>D&nbsp;&nbsp;</strong></div>
           <div id="42" class="seat" data-x="0" data-y="3" value="<%=seat[0].seat[42]%>">
           </div>
           <div id="43" class="seat" data-x="1" data-y="3" value="<%=seat[0].seat[43]%>">
@@ -1431,6 +1615,7 @@
         </div><br>
 
         <div class="" style="display:inline-block;">
+          <div class="seat"><br><strong>E&nbsp;&nbsp;</strong></div>
           <div id="56" class="seat" data-x="0" data-y="4" value="<%=seat[0].seat[56]%>">
           </div>
           <div id="57" class="seat" data-x="1" data-y="4" value="<%=seat[0].seat[57]%>">
@@ -1462,6 +1647,7 @@
         </div><br>
 
         <div class="" style="display:inline-block;">
+          <div class="seat"><br><strong>F&nbsp;&nbsp;</strong></div>
           <div id="70" class="seat" data-x="0" data-y="5" value="<%=seat[0].seat[70]%>">
           </div>
           <div id="71" class="seat" data-x="1" data-y="5" value="<%=seat[0].seat[71]%>">
@@ -1493,6 +1679,7 @@
         </div><br>
 
         <div class="" style="display:inline-block;">
+          <div class="seat"><br><strong>G&nbsp;&nbsp;</strong></div>
           <div id="84" class="seat" data-x="0" data-y="6" value="<%=seat[0].seat[84]%>">
           </div>
           <div id="85" class="seat" data-x="1" data-y="6" value="<%=seat[0].seat[85]%>">
@@ -1524,6 +1711,7 @@
         </div><br>
 
         <div class="" style="display:inline-block;">
+          <div class="seat"><br><strong>H&nbsp;&nbsp;</strong></div>
           <div id="98" class="seat" data-x="0" data-y="7" value="<%=seat[0].seat[98]%>">
           </div>
           <div id="99" class="seat" data-x="1" data-y="7" value="<%=seat[0].seat[99]%>">
@@ -1555,6 +1743,7 @@
         </div><br>
 
         <div class="" style="display:inline-block;">
+          <div class="seat"><br><strong>I&nbsp;&nbsp;</strong></div>
           <div id="112" class="seat" data-x="0" data-y="8" value="<%=seat[0].seat[112]%>">
           </div>
           <div id="113" class="seat" data-x="1" data-y="8" value="<%=seat[0].seat[113]%>">
@@ -1586,6 +1775,7 @@
         </div><br>
 
         <div class="" style="display:inline-block;">
+          <div class="seat"><br><strong>J&nbsp;&nbsp;</strong></div>
           <div id="126" class="seat" data-x="0" data-y="9" value="<%=seat[0].seat[126]%>">
           </div>
           <div id="127" class="seat" data-x="1" data-y="9" value="<%=seat[0].seat[127]%>">
@@ -1617,6 +1807,7 @@
         </div><br>
 
         <div class="" style="display:inline-block;">
+          <div class="seat"><br><strong>K&nbsp;&nbsp;</strong></div>
           <div id="140" class="seat" data-x="0" data-y="10" value="<%=seat[0].seat[140]%>">
           </div>
           <div id="141" class="seat" data-x="1" data-y="10" value="<%=seat[0].seat[141]%>">
@@ -1648,6 +1839,7 @@
         </div><br>
 
         <div class="" style="display:inline-block;">
+          <div class="seat"><br><strong>L&nbsp;&nbsp;</strong></div>
           <div id="154" class="seat" data-x="0" data-y="11" value="<%=seat[0].seat[154]%>">
           </div>
           <div id="155" class="seat" data-x="1" data-y="11" value="<%=seat[0].seat[155]%>">
@@ -1678,9 +1870,9 @@
           </div>
         </div><br>
   </div>
-    에헤라디야
+    <hr><hr><hr><hr>
   <div class="container">
-    좌석 선택하라우
+
   </div>
 </body>
 </html>

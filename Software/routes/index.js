@@ -6,7 +6,7 @@ var pool = mysql.createPool({
 	host: 'localhost',
 	user: 'root',
 	database: 'theater',
-	password: 'cndgus78'
+	password: 'mean8592'
 });
 
 /* GET home page. */
@@ -300,7 +300,7 @@ router.get('/book-3', function(req, res, next) {
                             [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
                             [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
                             [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
-                       		 ]; 
+                       		 ];
                        		 console.log("TLqk222 :: "+ seats);
 
 
@@ -650,13 +650,23 @@ router.get('/mypage', function(req, res, next) {
 					connection.query(sqlForSelectList4, function (err,loginsignal) {
 						if (err) console.error("err : " + err);
 						console.log("loginsignal : " + JSON.stringify(loginsignal));
+						var userid = loginsignal[0].id;
 
 						var sqlForSelectList5 = "SELECT * FROM logindb";
 
 						connection.query(sqlForSelectList5, function (err,loginsignal2) {
 							if (err) console.error("err : " + err);
 							console.log("loginsignal2 : " + JSON.stringify(loginsignal2));
-							res.render('mypage', {title: ' 영화 정보', rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2});
+
+							var sqlForbasket = "SELECT * FROM basket where buyer = '" + userid + "'";
+							connection.query(sqlForbasket, function(err, basket){
+								if (err) console.error("err : " + err);
+								console.log("basket : " + JSON.stringify(basket));
+
+
+							res.render('mypage', {title: ' 영화 정보', rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2, basket:basket});
+							});
+
 						// Don't use the connection here, it has been returned to the pool.
 						});
 
@@ -752,6 +762,28 @@ router.post('/join', function(req, res, next) {
 
 		//	}
 		//})
+	});
+});
+
+router.post('/store', function(req,res,next){
+	var name = req.body.name;
+	var price = req.body.price;
+	var amount = req.body.amount;
+	var buyer = req.body.buyer;
+
+	console.log("name : " + name);
+	console.log("amount : " + amount);
+	console.log("buyer : " + buyer);
+	pool.getConnection(function (err, connection) {
+		var sqlForbasket = "INSERT into basket(`name`, `amount`, `buyer`, `price`) VALUES ('" + name + "', '" + amount + "', '" + buyer + "', '" + price + "')";
+
+		connection.query(sqlForbasket, function(err, result){
+			if(err) console.error("err : ", err);
+			console.log("result : " + JSON.stringify(result));
+			res.redirect('/store');
+			connection.release();
+		})
+
 	});
 });
 
