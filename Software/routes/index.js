@@ -6,7 +6,7 @@ var pool = mysql.createPool({
 	host: 'localhost',
 	user: 'root',
 	database: 'theater',
-	password: 'mean8592'
+	password: 'cndgus78'
 });
 
 /* GET home page. */
@@ -252,7 +252,7 @@ router.get('/book-3', function(req, res, next) {
 		var sqlForSelectList = "SELECT * FROM movieinfo ORDER BY people DESC";
 
 		var sqlForbook = "SELECT * from theaterinfo order by time desc";
-
+		console.log("i'm book3");
 		connection.query(sqlForSelectList, function (err,rows) {
 			if (err) console.error("err : " + err);
 			console.log("rows : " + JSON.stringify(rows));
@@ -280,7 +280,32 @@ router.get('/book-3', function(req, res, next) {
 						connection.query(sqlForSelectList5, function (err,loginsignal2) {
 							if (err) console.error("err : " + err);
 							console.log("loginsignal2 : " + JSON.stringify(loginsignal2));
-							res.render('book-3', {title: ' 영화 정보', rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2});
+
+							var sqlForbooksi = "SELECT * from theaterinfo where area2 = '강남'";
+							connection.query(sqlForbooksi, function (err,seat) {
+							if (err) console.error("err : " + err);
+							console.log("seat : " + JSON.stringify(seat));
+							console.log("knjnxcjvnxckvn :::::::" + seat[0].seat);
+
+							var seats = [
+                            [1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                       		 ]; 
+                       		 console.log("TLqk222 :: "+ seats);
+
+
+							res.render('book-3', {title: ' 영화 정보', rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2, seat:seat});
+							});
 						// Don't use the connection here, it has been returned to the pool.
 						});
 
