@@ -67,12 +67,12 @@
           <li><a href="#" data-target="#logout" data-toggle="modal">로그아웃</a></li>
           <% } %>
         </ul>
+      </div>
         <% if(loginsignal2[0].login == 1){ %>
         <form class="navbar-form navbar-right">
           <font color=white size=4 fact=궁서> <%= loginsignal[0].name%>님 환영 합니다 </font>
         </form>
-        <% } %>
-      </div>
+        <% } %>      </div>
     </div>
   </nav>
 
@@ -183,10 +183,10 @@
           <li class="is-complete" data-step="3">
             <br><h4>영화관 선택</h4>
           </li>
-          <li class="is-active" data-step="4">
+          <li class="is-complete" data-step="4">
             <br><h4>좌석 선택</h4>
           </li>
-          <li class="" data-step="5">
+          <li class="is-active" data-step="5">
             <br><h4>결제</h4>
           </li>
         </ol>
@@ -194,14 +194,53 @@
 
   <div class="container">
     <div class="tab-content">
-      <div class="tab-pane active" id="seat">
+      <div class="tab-pane active" id="payment">
         <hr>
-        <hr>
-        좌석 선택하라우
-      </div> <!-- tab pane -3 !-->
-      <div class="tab-pane" id="payment">
-        <hr>
-
+        <dis class="container"><div class="alert alert-success">
+        <div class="row">
+          <section class="">
+              <header class="panel-heading">
+                예매 정보
+              </header>
+              <div class="panel-body">
+                <div class="alert alert-warning fade in">
+                      <button data-dismiss="alert" class="close close-sm" type="button">
+                          <i class="icon-remove"></i>
+                      </button>
+                      <strong>영화 - </strong> 캐리비안의 해적: 죽은 자는 말이 없다
+                  </div>
+                  <div class="alert alert-warning fade in">
+                      <button data-dismiss="alert" class="close close-sm" type="button">
+                          <i class="icon-remove"></i>
+                      </button>
+                      <strong>날짜 - </strong> yyyy - mm - dd
+                  </div>
+                  <div class="alert alert-warning fade in">
+                      <button data-dismiss="alert" class="close close-sm" type="button">
+                          <i class="icon-remove"></i>
+                      </button>
+                      <strong>영화관 - </strong> 서울 - 불광 - 1관 - 09:00 ~ 11:00
+                  </div>
+                  <div class="alert alert-warning fade in">
+                      <button data-dismiss="alert" class="close close-sm" type="button">
+                          <i class="icon-remove"></i>
+                      </button>
+                      <strong>좌석 - </strong> A - 12, A - 13
+                  </div>
+                  <div class="alert alert-warning fade in">
+                      <button data-dismiss="alert" class="close close-sm" type="button">
+                          <i class="icon-remove"></i>
+                      </button>
+                      <strong>가격 - </strong> 일반 2명: 18000원
+                  </div>
+              </div>
+              <center>
+                <a class="btn btn-default" href="/book" id="cancel" >취소</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-default" href="" id="admit">결제</a>
+              </center>
+          </section>
+        </div></div></div>
         <hr>
       </div> <!-- tab pane -4 !-->
 

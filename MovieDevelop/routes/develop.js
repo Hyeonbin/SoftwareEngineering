@@ -57,46 +57,6 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/logindb_list', function(req, res, next) {
-  pool.getConnection(function(err, connection){
-    var sqlForlist = "SELECT "
-    connection.query()
-  })
-    // 로그인 디비 쿼리 입력
-
-      // if문을 통해 에러 처리 및 콘솔창 출력
-      res.render('logindb', {}); // 데이터 전송
- 
-
-
-});
-
-router.get('/logindb_read/:idx', function(req, res, next) {
-  var idx = req.param.idx; // 테이블 id값 변수에 저장
-
-      // if문을 통해 에러 처리 및 콘솔창 출력
-      res.render('logindb_read', {}); // 데이터 전송
-
-});
-
-router.get('/logindb_delete/:idx', function(req, res, next) {
-  var idx = req.param.idx; // 테이블 id값 변수에 저장
-
-
-      // if문을 통해 에러 처리 및 콘솔창 출력
-      res.render('logindb_delete', {}); // 데이터 전송
-
-});
-
-router.get('/logindb_update', function(req, res, next) {
-  var idx = req.param.idx; // 테이블 id값 변수에 저장
-
-
-      // if문을 통해 에러 처리 및 콘솔창 출력
-      res.render('logindb_update', {}); // 데이터 전송
-
-});
-
 router.get('/clientinfo', function(req, res, next) { 
   pool.getConnection(function(err, connection){
     var sqlForclient = "SELECT * from clientinfo"
@@ -110,30 +70,26 @@ router.get('/clientinfo', function(req, res, next) {
   })
 });
 
-router.get('/clientinfo_read/:idx', function(req, res, next) {
-  var idx = req.param.idx; // 테이블 id값 변수에 저장
+router.get('/clientinfo_read/:id', function(req, res, next) {
+  var id = req.params.id; // 테이블 id값 변수에 저장
 
-      // if문을 통해 에러 처리 및 콘솔창 출력
-      res.render('clientinfo_read', {}); // 데이터 전송
+  pool.getConnection(function(err, connection){
+    var sqlForclientinfo = "SELECT * from ticketinfo where buyer='" + id + "'";
+    var sqlForclientinfo2 = "SELECT * from storeinfo where buyer='" + id + "'";
 
-});
+    connection.query(sqlForclientinfo, function(err, row){
+      if (err) console.error("row : " + err);
+      console.log("row : " + JSON.stringify(row));
+      connection.query(sqlForclientinfo2, function(err, row2){
+      if (err) console.error("row2 : " + err);
+      console.log("row2 : " + JSON.stringify(row2));
 
-router.get('/clientinfo_delete/:idx', function(req, res, next) {
-  var idx = req.param.idx; // 테이블 id값 변수에 저장
+      res.render('clientinfo_read', {row:row, row2:row2});
 
-
-      // if문을 통해 에러 처리 및 콘솔창 출력
-      res.render('clientinfo_delete', {}); // 데이터 전송
-
-});
-
-router.get('/clientinfo_update', function(req, res, next) {
-  var idx = req.param.idx; // 테이블 id값 변수에 저장
-
-
-      // if문을 통해 에러 처리 및 콘솔창 출력
-      res.render('clientinfo_update', {}); // 데이터 전송
-
+      });
+    connection.release();
+    })
+  })
 });
 
 router.get('/movieinfo', function(req, res, next) {
@@ -162,15 +118,6 @@ router.get('/movieinfo_read/:title', function(req, res, next) {
     connection.release();
     })
   })
-});
-
-router.get('/movieinfo_delete/:idx', function(req, res, next) {
-  var idx = req.param.idx; // 테이블 id값 변수에 저장
-
-
-      // if문을 통해 에러 처리 및 콘솔창 출력
-      res.render('movieinfo_delete', {}); // 데이터 전송
-
 });
 
 router.get('/movieinfo_update', function(req, res, next) {
@@ -273,44 +220,24 @@ router.post('/movieinfo_read/:title', function(req, res, next) {
   })
 });
 
-router.post('/logindb_write', function(req, res, next) {
-  // 로그인 디비에 저장할 데이터들 변수에 저장
-
-
-      // if문을 통해 에러 처리 및 콘솔창 출력
-      res.redirect('/logindb_list'); // logindb_list로 이동
-
-});
-
-router.post('/logindb_delete', function(req, res, next) {
-  var idx = req.param.idx; // 테이블 id값 변수에 저장
-
-
-      // if문을 통해 에러 처리 및 콘솔창 출력
-      res.redirect('/logindb_list'); // logindb_list로 이동
-
-})
-
-router.post('/logindb_update', function(req, res, next) {
-  // 로그인 디비에 저장할 데이터들 변수에 저장
-
-
-      // if문을 통해 에러 처리 및 콘솔창 출력
-      res.redirect('/logindb_list'); // logindb_list로 이동
-
-});
-
 router.post('/clientinfo', function(req, res, next) {
   var userid = req.body.user_id;
-  console.log("userid : " + userid);
+
   pool.getConnection(function(err, connection){
     var sqlForclient = "DELETE from clientinfo where id='" + userid + "'"
+    var sqlForclient2 = "DELETE from ticketinfo where buyer='" + userid + "'"
+    var sqlForclient3 = "DELETE from storeinfo where buyer='" + userid + "'"
 
     connection.query(sqlForclient, function(err, rows){
-      if (err) console.error("result : " + err);
-      console.log("rows : " + JSON.stringify(rows));
-      console.log("asldkansdlknalxknaslxxmasm :::: " + rows)
-      res.redirect('/clientinfo');
+      if (err) console.error("rows : " + err);
+      connection.query(sqlForclient2, function(err, rows2){
+        if (err) console.error("rows2 : " + err);
+        connection.query(sqlForclient3, function(err, rows3){
+          if (err) console.error("rows3 : " + err);
+
+          res.redirect('/clientinfo');
+        });
+      });
     connection.release();
     })
   })
@@ -323,24 +250,6 @@ router.post('/clientinfo_write', function(req, res, next) {
       // if문을 통해 에러 처리 및 콘솔창 출력
       res.redirect('/clientinfo'); // logindb_list로 이동
 
-});
-
-router.post('/clientinfo_delete', function(req, res, next) {
-  var idx = req.param.idx; // 테이블 id값 변수에 저장
-
-
-      // if문을 통해 에러 처리 및 콘솔창 출력
-      res.redirect('/clientinfo'); // logindb_list로 이동
-
-})
-
-router.post('/clientinfo_update', function(req, res, next) {
-  // 로그인 디비에 저장할 데이터들 변수에 저장
-
-
-      // if문을 통해 에러 처리 및 콘솔창 출력
-      res.redirect('/clientinfo'); // logindb_list로 이동
- 
 });
 
 router.post('/movieinfo_write', function(req, res, next) {
@@ -391,15 +300,6 @@ router.post('/movieinfo_write2', function(req, res, next) {
     });
   });
 });
-
-router.post('/movieinfo_delete', function(req, res, next) {
-  var idx = req.param.idx; // 테이블 id값 변수에 저장
-
- 
-      // if문을 통해 에러 처리 및 콘솔창 출력
-      res.redirect('/movieinfo'); // logindb_list로 이동
-
-})
 
 router.post('/movieinfo_update', function(req, res, next) {
   // 로그인 디비에 저장할 데이터들 변수에 저장
