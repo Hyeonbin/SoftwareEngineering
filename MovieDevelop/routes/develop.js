@@ -57,4 +57,357 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/logindb_list', function(req, res, next) {
+  pool.getConnection(function(err, connection){
+    var sqlForlist = "SELECT "
+    connection.query()
+  })
+    // 로그인 디비 쿼리 입력
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.render('logindb', {}); // 데이터 전송
+ 
+
+
+});
+
+router.get('/logindb_read/:idx', function(req, res, next) {
+  var idx = req.param.idx; // 테이블 id값 변수에 저장
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.render('logindb_read', {}); // 데이터 전송
+
+});
+
+router.get('/logindb_delete/:idx', function(req, res, next) {
+  var idx = req.param.idx; // 테이블 id값 변수에 저장
+
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.render('logindb_delete', {}); // 데이터 전송
+
+});
+
+router.get('/logindb_update', function(req, res, next) {
+  var idx = req.param.idx; // 테이블 id값 변수에 저장
+
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.render('logindb_update', {}); // 데이터 전송
+
+});
+
+router.get('/clientinfo', function(req, res, next) { 
+  pool.getConnection(function(err, connection){
+    var sqlForclient = "SELECT * from clientinfo"
+    connection.query(sqlForclient, function(err, rows){
+      if (err) console.error("result : " + err);
+      console.log("rows : " + JSON.stringify(rows));
+      console.log("asldkansdlknalxknaslxxmasm :::: " + rows)
+      res.render('clientinfo', {title: ' 영화 정보', rows:rows});
+    connection.release();
+    })
+  })
+});
+
+router.get('/clientinfo_read/:idx', function(req, res, next) {
+  var idx = req.param.idx; // 테이블 id값 변수에 저장
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.render('clientinfo_read', {}); // 데이터 전송
+
+});
+
+router.get('/clientinfo_delete/:idx', function(req, res, next) {
+  var idx = req.param.idx; // 테이블 id값 변수에 저장
+
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.render('clientinfo_delete', {}); // 데이터 전송
+
+});
+
+router.get('/clientinfo_update', function(req, res, next) {
+  var idx = req.param.idx; // 테이블 id값 변수에 저장
+
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.render('clientinfo_update', {}); // 데이터 전송
+
+});
+
+router.get('/movieinfo', function(req, res, next) {
+  pool.getConnection(function(err, connection){
+    var sqlFormovie = "SELECT * from movieinfo order by openday desc"
+    connection.query(sqlFormovie, function(err, rows){
+      if (err) console.error("result : " + err);
+      console.log("rows : " + JSON.stringify(rows));
+
+      res.render('movieinfo', {title: ' 영화 정보', rows:rows});
+    connection.release();
+    })
+  })
+});
+
+router.get('/movieinfo_read/:title', function(req, res, next) {
+  var title = req.params.title; // 테이블 id값 변수에 저장
+
+  pool.getConnection(function(err, connection){
+    var sqlFormovieinfo = "SELECT * from theaterinfo where title='" + title + "'";
+    connection.query(sqlFormovieinfo, [title], function(err, row){
+      if (err) console.error("result : " + err);
+      console.log("row : " + JSON.stringify(row));
+
+      res.render('movieinfo_read', {title: ' 영화 정보', row:row});
+    connection.release();
+    })
+  })
+});
+
+router.get('/movieinfo_delete/:idx', function(req, res, next) {
+  var idx = req.param.idx; // 테이블 id값 변수에 저장
+
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.render('movieinfo_delete', {}); // 데이터 전송
+
+});
+
+router.get('/movieinfo_update', function(req, res, next) {
+  var idx = req.param.idx; // 테이블 id값 변수에 저장
+
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.render('movieinfo_update', {}); // 데이터 전송
+
+});
+
+router.get('/movieinfo_write', function(req, res, next) {
+  // 로그인 디비에 저장할 데이터들 변수에 저장
+
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.render('movieinfo_write', {}); // logindb_list로 이동
+
+});
+
+router.get('/movieinfo_write2', function(req, res, next) {
+  // 로그인 디비에 저장할 데이터들 변수에 저장
+
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.render('movieinfo_write2', {}); // logindb_list로 이동
+
+});
+
+router.post('/', function(req,res,next){
+  var userid = req.body.username;
+  var password = req.body.password;
+
+  pool.getConnection(function (err, connection) {
+    // Use the connectio
+    //SET @userid = req.body.user_id;
+    var sqlForlogin = "SELECT * FROM manager WHERE id='"+userid+"'";
+    var sqlForlogin2 = "UPDATE logindb set login=1";
+    var sqlForlogin3 = "UPDATE logindb set login=0";
+
+    connection.query(sqlForlogin, function(err, result){
+      if(err) console.error("err : " + err);
+      console.log("result : " + JSON.stringify(result));
+
+      connection.query(sqlForlogin3, function(err, resultlogout){
+        if(err) console.error("err : " + err);
+        console.log("resultlogout : " + JSON.stringify(resultlogout));
+
+        if(result.length == 0){
+          res.send("<script> alert('존재하지 않는 아이디 입니다.');history.back();</script>");
+        }
+        else{
+          if(result[0].passwd !== password){
+            res.send("<script> alert('비밀번호가 틀렸습니다.');history.back();</script>");
+          }
+          else{
+            res.redirect('/clientinfo');
+          }
+        }
+      });
+      connection.release();
+    });
+  });
+});
+
+router.post('/movieinfo', function(req, res, next) {
+  var title = req.body.title; // 테이블 id값 변수에 저장
+
+  pool.getConnection(function(err, connection){
+    var sqlFormovieinfodel = "delete from movieinfo where title='" + title + "'";
+    connection.query(sqlFormovieinfodel, [title], function(err, row){
+      if (err) console.error("result : " + err);
+      console.log("row : " + JSON.stringify(row));
+      console.log("hiru3 : " +row);
+
+      res.redirect('movieinfo');
+    connection.release();
+    })
+  })
+});
+
+router.post('/movieinfo_read/:title', function(req, res, next) {
+  var title = req.params.title; // 테이블 id값 변수에 저장
+  var area1 = req.body.area1;
+  var area2 = req.body.area2;
+  var theaternum = req.body.theaternum;
+
+  pool.getConnection(function(err, connection){
+    var sqlFormovieinfo = "delete from theaterinfo where title='" + title + "' and area1='" + area1 +"' and area2='" + area2 + "' and theaternum='" + theaternum +"'";
+    connection.query(sqlFormovieinfo, [title], function(err, row){
+      if (err) console.error("result : " + err);
+      console.log("row : " + JSON.stringify(row));
+      console.log("hiru : " +area1);
+      console.log("hiru2 : " +sqlFormovieinfo);
+      console.log("hiru3 : " +row);
+
+      res.redirect(title);
+    connection.release();
+    })
+  })
+});
+
+router.post('/logindb_write', function(req, res, next) {
+  // 로그인 디비에 저장할 데이터들 변수에 저장
+
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.redirect('/logindb_list'); // logindb_list로 이동
+
+});
+
+router.post('/logindb_delete', function(req, res, next) {
+  var idx = req.param.idx; // 테이블 id값 변수에 저장
+
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.redirect('/logindb_list'); // logindb_list로 이동
+
+})
+
+router.post('/logindb_update', function(req, res, next) {
+  // 로그인 디비에 저장할 데이터들 변수에 저장
+
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.redirect('/logindb_list'); // logindb_list로 이동
+
+});
+
+router.post('/clientinfo', function(req, res, next) {
+  var userid = req.body.user_id;
+  console.log("userid : " + userid);
+  pool.getConnection(function(err, connection){
+    var sqlForclient = "DELETE from clientinfo where id='" + userid + "'"
+
+    connection.query(sqlForclient, function(err, rows){
+      if (err) console.error("result : " + err);
+      console.log("rows : " + JSON.stringify(rows));
+      console.log("asldkansdlknalxknaslxxmasm :::: " + rows)
+      res.redirect('/clientinfo');
+    connection.release();
+    })
+  })
+});
+
+router.post('/clientinfo_write', function(req, res, next) {
+  // 로그인 디비에 저장할 데이터들 변수에 저장
+
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.redirect('/clientinfo'); // logindb_list로 이동
+
+});
+
+router.post('/clientinfo_delete', function(req, res, next) {
+  var idx = req.param.idx; // 테이블 id값 변수에 저장
+
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.redirect('/clientinfo'); // logindb_list로 이동
+
+})
+
+router.post('/clientinfo_update', function(req, res, next) {
+  // 로그인 디비에 저장할 데이터들 변수에 저장
+
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.redirect('/clientinfo'); // logindb_list로 이동
+ 
+});
+
+router.post('/movieinfo_write', function(req, res, next) {
+  // 로그인 디비에 저장할 데이터들 변수에 저장
+  var title = req.body.title;
+  var grade = req.body.grade;
+  var genre = req.body.genre;
+  var openday = req.body.openday;
+  var director = req.body.director;
+  var actor = req.body.actor;
+  var time = req.body.time;
+  var ing = req.body.ing;
+  var image = req.body.image;
+  var image2 = req.body.image2;
+
+  pool.getConnection(function (err, connection) {
+    // Use the connectio
+    var sqlFormovieadd = "INSERT into movieinfo (`title`, `grade`, `genre`, `openday`, `director`, `actor`, `time`, `ing`, `image`, `image2`) VALUES('"+title+"', '"+grade+"', '"+genre+"', '"+openday+"', '"+director+"', '"+actor+"', '"+time+"', '"+ing+"', '"+image+"', '"+image2+"')";
+
+    connection.query(sqlFormovieadd, function(err, result){
+      if(err) console.error("err : " + err);
+      console.log("result : " + JSON.stringify(result));
+
+      res.redirect('/movieinfo'); // logindb_list로 이동
+      connection.release();
+    });
+  });
+});
+
+router.post('/movieinfo_write2', function(req, res, next) {
+  // 로그인 디비에 저장할 데이터들 변수에 저장
+  var title = req.body.title;
+  var area1 = req.body.area1;
+  var area2 = req.body.area2;
+  var theaternum = req.body.theaternum;
+  var time = req.body.time;
+
+  pool.getConnection(function (err, connection) {
+    // Use the connectio
+    var sqlFormovieadd2 = "INSERT into theaterinfo (`title`, `area1`, `area2`, `theaternum`, `time`) VALUES('"+title+"', '"+area1+"', '"+area2+"', '"+theaternum+"', '"+time+"')";
+
+    connection.query(sqlFormovieadd2, function(err, result){
+      if(err) console.error("err : " + err);
+      console.log("result : " + JSON.stringify(result));
+
+      res.redirect('/movieinfo'); // logindb_list로 이동
+      connection.release();
+    });
+  });
+});
+
+router.post('/movieinfo_delete', function(req, res, next) {
+  var idx = req.param.idx; // 테이블 id값 변수에 저장
+
+ 
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.redirect('/movieinfo'); // logindb_list로 이동
+
+})
+
+router.post('/movieinfo_update', function(req, res, next) {
+  // 로그인 디비에 저장할 데이터들 변수에 저장
+
+
+      // if문을 통해 에러 처리 및 콘솔창 출력
+      res.redirect('/logindb_list'); // logindb_list로 이동
+
+});
+
 module.exports = router;

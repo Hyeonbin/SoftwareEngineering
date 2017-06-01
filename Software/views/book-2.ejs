@@ -70,6 +70,11 @@
         <form class="navbar-form navbar-right" role="search">
           <input type="text" class="form-control" placeholder="Search">
         </form>
+        <% if(loginsignal2[0].login == 1){ %>
+        <form class="navbar-form navbar-right">
+          <font color=white size=4 fact=궁서> <%= loginsignal[0].name%>님 환영 합니다 </font>
+        </form>
+        <% } %>
       </div>
     </div>
   </nav>
@@ -174,6 +179,7 @@
     <div class="alert alert-info">
       <div class="container">
 		      <div class="row bs-wizard" style="border-bottom:0;">
+            <div class="row bs-wizard" style="border-bottom:0;">
             <div class="col-xs-3 bs-wizard-step complete" id="step1_bt">
               <div class="text-center bs-wizard-stepnum">
                 Step 1
@@ -231,6 +237,7 @@
             </div>
           </div>
       	</div>
+         </div>
         <!-- progress bar !-->
       </div>
     </div>
@@ -632,4 +639,5 @@
 
 
 </body>
+</html>
 </html>

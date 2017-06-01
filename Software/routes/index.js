@@ -6,7 +6,7 @@ var pool = mysql.createPool({
 	host: 'localhost',
 	user: 'root',
 	database: 'theater',
-	password: 'mean8592'
+	password: 'cndgus78'
 });
 
 /* GET home page. */
@@ -123,6 +123,8 @@ router.get('/book-1', function(req, res, next) {
 	pool.getConnection(function (err, connection) {
 		// Use the connection
 		var sqlForSelectList = "SELECT * FROM movieinfo ORDER BY people DESC";
+		var sqlForbook = "SELECT * from theaterinfo order by time desc";
+		var sqlForbooksi = "SELECT * from theaterinfo where area2 = '강남'";
 
 		connection.query(sqlForSelectList, function (err,rows) {
 			if (err) console.error("err : " + err);
@@ -152,6 +154,33 @@ router.get('/book-1', function(req, res, next) {
 							if (err) console.error("err : " + err);
 							console.log("loginsignal2 : " + JSON.stringify(loginsignal2));
 							res.render('book-1', {title: ' 영화 정보', rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2});
+
+							connection.query(sqlForbooksi, function (err,seat) {
+							if (err) console.error("err : " + err);
+							console.log("seat : " + JSON.stringify(seat));
+
+
+							var seats = [
+                            [1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                            [1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+                       		 ]; 
+                       		 console.log("TLqk222 :: "+ seats);
+
+
+
+
+							res.render('book-1', {title: ' 영화 정보', rows: rows, rows2:rows2, rows3:rows3, loginsignal:loginsignal, loginsignal2:loginsignal2, seats:seats});
+							})
 						// Don't use the connection here, it has been returned to the pool.
 						});
 
@@ -171,6 +200,8 @@ router.get('/book-2', function(req, res, next) {
 	pool.getConnection(function (err, connection) {
 		// Use the connection
 		var sqlForSelectList = "SELECT * FROM movieinfo ORDER BY people DESC";
+
+		var sqlForbook = "SELECT * from theaterinfo order by time desc";
 
 		connection.query(sqlForSelectList, function (err,rows) {
 			if (err) console.error("err : " + err);
@@ -220,6 +251,8 @@ router.get('/book-3', function(req, res, next) {
 		// Use the connection
 		var sqlForSelectList = "SELECT * FROM movieinfo ORDER BY people DESC";
 
+		var sqlForbook = "SELECT * from theaterinfo order by time desc";
+
 		connection.query(sqlForSelectList, function (err,rows) {
 			if (err) console.error("err : " + err);
 			console.log("rows : " + JSON.stringify(rows));
@@ -267,7 +300,7 @@ router.get('/book-4', function(req, res, next) {
 	pool.getConnection(function (err, connection) {
 		// Use the connection
 		var sqlForSelectList = "SELECT * FROM movieinfo ORDER BY people DESC";
-
+		var sqlForbook = "SELECT * from theaterinfo order by time desc";
 		connection.query(sqlForSelectList, function (err,rows) {
 			if (err) console.error("err : " + err);
 			console.log("rows : " + JSON.stringify(rows));

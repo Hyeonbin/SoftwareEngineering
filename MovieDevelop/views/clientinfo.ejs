@@ -20,14 +20,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">Max Movie</a>
+        <a class="navbar-brand" href="/clientinfo">Max Movie</a>
       </div>
 
       <div class="collapse navbar-collapse" id="nav-toggle">
         <ul class="nav navbar-nav">
-          <li><a href="/logindb_list">로그인</a></li>
-          <li><a href="/clientinfo_list" class="active">클라이언트인포</a></li>
-          <li><a href="/movieinfo_list">무비인포</a></li>
+          <li><a href="/clientinfo" class="active">클라이언트인포</a></li>
+          <li><a href="/movieinfo">무비인포</a></li>
         </ul>
       </div>
     </div>
@@ -39,16 +38,16 @@
   <!--클라이언트 디비 읽어서 대입-->
   <h1>클라이언트 정보 데이터베이스</h1>
 
-  <a href="/clientinfo_write">정보 추가</a>
   <br>
   <br>
 
-  <table border="1">
+  <table  style="text-align: center;" border="1">
     <tr>
       <td>번호</td>
       <td>ID</td>
       <td>PASSWD</td>
-      <td>로그인 여부</td>
+      <td>Phone</td>
+      <td>Email</td>
       <td></td>
     </tr>
 <%
@@ -57,11 +56,15 @@
       var oneItem = rows[i];
 %>
     <tr>
-      <td><%=oneItem.idx%></td>
-      <td><%=oneItem.creator_id%></td>
-      <td><a href="/clientinfo_read/<%=oneItem.idx%>"><%=oneItem.title%></a></td>
-      <td><%=oneItem.hit%></td>
-      <td><a href="/clientinfo_delete/<%=oneItem.idx%>">삭제</a></td>
+      <td><%=i+1%></td>
+      <td>&nbsp&nbsp<%=oneItem.id%>&nbsp&nbsp</td>
+      <td>&nbsp&nbsp<%=oneItem.passwd%>&nbsp&nbsp</td>
+      <td>&nbsp&nbsp<%=oneItem.phone%>&nbsp&nbsp</td>
+      <td>&nbsp&nbsp<%=oneItem.email%>&nbsp&nbsp</td>
+      <form action="/clientinfo" accept-charset="UTF-8" role="form" method="post" action="">
+      <input type="hidden" name="user_id" value="juregon"/>
+      <td><button type="submit">&nbsp&nbsp회원 삭제&nbsp&nbsp</button></td>
+      </form>
     </tr>
 <%
     }

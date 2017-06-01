@@ -40,6 +40,8 @@
 </head>
 
 <body>
+
+
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
@@ -371,6 +373,61 @@
   });
   </script>
 
+<<<<<<< Updated upstream
+=======
+ <script type="text/javascript">
+        $(document).ready(function () {
+            // 변수를 선언합니다.
+            var onClickSeat = function () {
+                var x = $(this).attr('data-x');
+                var y = $(this).attr('data-y');
+                if (confirm('좌석을 예약하시겠습니까?')) {
+                    $(this).off('click');
+                    socket.emit('reserve', {
+                        x: x,
+                        y: y
+                    });
+                } else {
+                    alert('취소되었습니다.');
+                }
+            };
+
+
+            var seatss = [
+                            [1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1]
+                        
+                           ]; 
+            /*                
+            console.log("askdjalsdjalskdjalksdj lkjaslkdj :: " + seatss);
+                // 좌석을 생성합니다.
+                $.each($("#seatseat").val().trim(), function (indexY, line) {
+                    // 문서 객체를 생성합니다.
+                    var $line = $('<div></div>').addClass('line');
+                    $.each(line, function (indexX, seat) {
+                        // 문서 객체를 생성하고 변수 $line에 추가합니다.
+                        var $output = $('<div></div>', {
+                            'class': 'seat',
+                            'data-x': 'indexX',
+                            'data-y': 'indexY'
+                        }).appendTo($line);
+                        if (seat == 1) {
+                            // 좌석이 비어 있으면 enable 클래스와 click 리스너를 추가합니다.
+                            $output.addClass('enable').on('click', onClickSeat);
+                        } else if (seat == 2) {
+                            // 좌석이 사용 불가능하면 disable 클래스를 추가합니다.
+                            $output.addClass('disable');
+                        }
+                    });
+                    // 문서 객체를 추가합니다.
+                    $line.appendTo('.seat_book');
+                });*/
+            
+         }); 
+
+
+    </script>
+
+>>>>>>> Stashed changes
   <div class="container">
     <div class="alert alert-info">
       <div class="container">
@@ -445,7 +502,7 @@
             <div class="col-lg-12">
             </div>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#theaterselect" id="movie_1" data-toggle="tab" aria-expanded="false">
+                <a class="thumbnail" href="#theaterselect" id="movie_2" data-toggle="tab" aria-expanded="false">
                     <img class="img-responsive" src="http://placehold.it/400x300" alt="">
                     영화1
                 </a>
@@ -453,43 +510,43 @@
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="#theaterselect" id="movie_2" data-toggle="tab" aria-expanded="false">
                     <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                    영화2
+                    <%=rows[1].title%>
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="#theaterselect" id="movie_3" data-toggle="tab" aria-expanded="false">
                     <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                    영화3
+                    <%=rows[2].title%>
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="#theaterselect" id="movie_4" data-toggle="tab" aria-expanded="false">
                     <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                    영화4
+                    <%=rows[3].title%>
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="#theaterselect" id="movie_5" data-toggle="tab" aria-expanded="false">
                     <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                    영화5
+                    <%=rows[4].title%>
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="#theaterselect" id="movie_6" data-toggle="tab" aria-expanded="false">
                     <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                    영화6
+                    <%=rows[5].title%>
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="#theaterselect" id="movie_7" data-toggle="tab" aria-expanded="false">
                     <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                    영화7
+                    <%=rows[6].title%>
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <a class="thumbnail" href="#theaterselect" id="movie_8" data-toggle="tab" aria-expanded="false">
                     <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                    영화8
+                    <%=rows[7].title%>
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -879,8 +936,59 @@
         <div class="row">
           <br>
           <br>
+<<<<<<< Updated upstream
           좌석선택하시라오~
 
+=======
+         <--좌석선택하시라오~--> 
+          <div class="seat_book">
+            <div class="line">
+
+               <% for(var i=0; i<12; i++) %>
+               <%{%>
+                  <%for(var j=0; j<14; j++)%>
+                  <%{%>
+                     <%var val = seats[i][j];%>
+                     
+                     <%if(val == 1)%>
+                     <%{%>
+
+                        <div class="seat enable" data-x="<%=j%>" data-y="<%=i%>" onclick="onClickSeat">
+                        </div>
+       
+                     <%}%>   
+                     <%if(val == 2)%>
+                     <%{%>
+                        <div class="seat disable" data-x="<%=j%>" data-y="<%=i%>" onclick="onClickSeat">
+                       </div>
+                     <%}%>
+                  <%}%>
+               <%}%>
+ 
+            <!--<div class="line">
+               <div class="seat enable" data-x="0" data-y="0">      
+               </div>
+               <div class="seat enable" data-x="1" data-y="0">      
+               </div>
+               <div class="seat enable" data-x="2" data-y="0">      
+               </div>
+               <div class="seat enable" data-x="3" data-y="0">      
+               </div>
+               <div class="seat enable" data-x="4" data-y="0">      
+               </div>
+               <div class="seat enable" data-x="5" data-y="0">      
+               </div>
+               <div class="seat enable" data-x="6" data-y="0">      
+               </div>
+               <div class="seat enable" data-x="7" data-y="0">      
+               </div>
+               <div class="seat enable" data-x="8" data-y="0">      
+               </div>
+               <div class="seat enable" data-x="9" data-y="0">      
+               </div>   
+            </div>-->
+          </div>
+>>>>>>> Stashed changes
         </div>
         <hr>
       </div> <!-- tab pane -3 !-->
